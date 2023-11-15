@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Main Content-->
+<section>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <img class="img-fluid"
+                        src="https://res.cloudinary.com/dbjnqkn07/image/upload/v1692358156/healthclub-pp4/pexels-victor-freitas-703014_mwhg9x.jpg"
+                        alt="..." />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <h4 class="display-4">Personal Trainer</h4>
+                    <h5 class="post-subtitle">A session with a Personal Trainer that has the knowledge on how the human
+                        body reacts and knows how You can get where you want to be can make the whole difference. Book
+                        your Personal Trainer session today and get started on your journey!</h5>
+                    <a href="{% url 'book' %}" class="btn btn-primary">Book session</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Postcard layout by MDBootstrap-->
+<main class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="https://res.cloudinary.com/dbjnqkn07/image/upload/v1692358156/healthclub-pp4/pexels-victor-freitas-841130_ggalv1.jpg"
+                            class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Contact Us</h5>
+                        <form method="post" class="contact-form">
+                            {{ form|crispy }}
+                            {% csrf_token %}
+                            <!-- Email input -->
+                            <!--<div class="form-outline mb-4">
+                                                <input type="email" id="form2Example1" class="form-control" />
+                                                <label class="form-label" for="form2Example1">Email address</label>
+                                            </div>-->
+                            <!-- Message input -->
+                            <!--<div class="form-group">
+                                                <label for="messageInput">Message</label>
+                                                <textarea id="messageInput" class="form-control" rows="4"></textarea>
+                                            </div>-->
+                            <!-- Submit button -->
+                            <div class="text-center">
+                                <button id="sendButton" type="button" class="btn btn-primary"
+                                    style="width: 30%">Send</button>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="https://res.cloudinary.com/dbjnqkn07/image/upload/v1692358155/healthclub-pp4/pexels-victor-freitas-703016_p5hqbj.jpg"
+                            class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Members</h5>
+                        <p class="card-text">
+                            Become a member today to receive the lates news, offers and much more.
+                        </p>
+                        <a href="{% url 'member' %}" class="btn btn-primary">Sign in/Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

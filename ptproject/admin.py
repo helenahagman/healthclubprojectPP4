@@ -5,19 +5,15 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(BookingRequest)
 class BookingRequestAdmin(SummernoteModelAdmin):
-    list_display = ('name', 'phonenumber', 'email', 'age', 'gender', 'message', 'date', 'time', 'get_approved')
-    search_fields = ('name', 'get_approved')
+    list_display = ('name', 'phonenumber', 'email', 'age', 'gender', 'message', 'date', 'time', 'approved')
+    search_fields = ('name', 'approved')
     list_filter = ('name',)
+    actions = ['approve_booking']
 
-    actions = ['approve_booking', 'unapprove_booking']
+    def approve_booking(self, request, queryset):
+        queryset.update(approved=True)
 
-    def get_approved(self, obj):
-        return obj.approved
-    get_approved.short_description = 'Request Approved'
-
-    def unapprove_booking(self, request, queryset):
-        queryset.update(approved='not_approved')
-
+    
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('name_contact', 'email', 'contact_message', 'created_on')

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Login" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="https://res.cloudinary.com/dbjnqkn07/image/upload/v1699354020/healthclub-pp4/pexels-bich-tran-669986_1_hwbku7.jpg"
+                        class="img-fluid" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h3>{% trans "Login" %}</h3>
+                    <h5>{% blocktrans %} Welcome back! </h5>
+                    <p>Want to become a member? <a class="link" href="{{ register_url }}">Register</a>
+                        {% endblocktrans %}
+                    </p>
+                    <form class="login" method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="id_email">Email address</label>
+                            <input type="email" name="email" id="id_email" class="form-control" />
+                        </div>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="id_password">Choose Password</label>
+                            <input type="password" name="password" id="id_password" class="form-control" />
+                        </div>
+                        <!-- Sign in button -->
+                        <div class="text-center">
+                            <button id="signInButton" type="submit" class="btn btn-primary" style="width: 30%">Sign
+                                In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
