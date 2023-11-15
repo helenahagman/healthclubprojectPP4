@@ -1,0 +1,36 @@
+/* custom css*/
+
+
+body {
+    padding-top: 70px;
+}
+
+.masthead {
+    margin-top: 100px;
+}
+
+.custom-columns {
+    text-align: center;
+}
+
+#menu a.current {
+    color: #080707;
+    background-color: rgb(180, 175, 175);
+}
+
+.btn-primary {
+    background-color: #248ea3;
+    border-color: #0085A1;
+}
+
+.footer-text-color {
+    color: white;
+}
+
+.footer a {
+    color: black;
+}
+
+.footer a:hover {
+    color: gray;
+}
