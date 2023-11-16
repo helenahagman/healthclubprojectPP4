@@ -2,7 +2,7 @@ from django.core.mail import send_mail
 from django.views import generic, View
 from django.contrib.auth import login
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.conf import settings
 from .models import BookingRequest, UserProfile, Contact
