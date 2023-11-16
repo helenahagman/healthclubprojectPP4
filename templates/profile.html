@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Main Content-->
+<section>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <img class="img-fluid"
+                        src="https://res.cloudinary.com/dbjnqkn07/image/upload/v1692358156/healthclub-pp4/pexels-victor-freitas-703014_mwhg9x.jpg"
+                        alt="..." />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <h5 class="display-4">Profile Page</h5>
+                </div>
+            </div>
+            <table class="profile-table">
+                {% csrf_token %}
+                <div class="card-body pl-5">
+                    <p><span class="fw-bold">Username:</span> {{ user.username }}</p>
+                    <p><span class="fw-bold">Email:</span> {{ user.email }}</p>
+                    <p><span class="fw-bold">First Name:</span> {{ user.profile.first_name_profile }}</p>
+                    <p><span class="fw-bold">Last Name:</span> {{ user.profile.last_name_profile }}</p>
+                    <p><span class="fw-bold">Phone:</span> {{ user.profile.phone_number }}</p>
+                </div>
+                <tbody class="table-group-divider">
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td><a class="btn btn-dark btn-profile" href="{% url 'delete-account' user.id %}"></a>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

@@ -2,13 +2,18 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator, ValidationError
 from cloudinary.models import CloudinaryField
 from ptproject.utils import date_validation, num_validation, name_validation
 
 
 STATUS = ((0, "Draft"), (1, "Published"))
-alpha_only = RegexValidator(r'^[a-zA-Z]*$', 'Only alpha[a-zA-Z] characters are allowed.')
+
+
+def alpha_only(value):
+    if not value.isalpha():
+        raise ValidationError ('Only alphabetic characters are allowed.')
+
 
 class BookingRequest(models.Model):
     """
@@ -50,7 +55,7 @@ class Contact(models.Model):
         verbose_name_plural = 'Contact Messages'
 
     def __str__(self):
-        return f'Contact message submitted by {self.name} on {self.created_on}'
+        return f'Contact message submitted by {self.name_contact} on {self.created_on}'
 
 
 class UserProfile(models.Model):

@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from .models import BookingRequest, UserProfile, Contact
-from .forms import RegistrationForm
+from .forms import RegistrationForm, ContactForm
 
 
 def index(request):
