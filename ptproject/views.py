@@ -4,6 +4,7 @@ from django.contrib.auth import login
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.conf import settings
 from .models import BookingRequest, UserProfile, Contact
 from .forms import RegistrationForm, ContactForm, BookingRequestForm
 
@@ -101,19 +102,16 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()
+
+            name_contact = form.cleaned_data['name_contact']
+            email = form.cleaned_data['email']
+            contact_message = form.cleaned_data['contact_message']
             
-            subject = 'Contact Form Submission'
-            message = 'Thank you, we will get back to you shortly!'
             from_email = settings.DEFAULT_FROM_EMAIL
-            recipient_list = ['health.club.project.email@gmail.com']
-
-            send_mail(subject, message, from_email, recipient_list)
-
+            
             messages.success(request, 'Your message has been sent.')
-            return redirect('contact')
+            return HttpResponseRedirect(reverse('contact'))
     else:
         form = ContactForm()
     
-    context = {'title': 'Contact', 'form' : form}
-    return render(request, 'contact.html', context)
+    return render(request, 'contact.html', {'form': form})
