@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head_title %} {% trans "Register" %} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="https://res.cloudinary.com/dbjnqkn07/image/upload/v1699354020/healthclub-pp4/pexels-bich-tran-669986_1_hwbku7.jpg"
+                        class="img-fluid" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h3>{% trans "Contact" %}</h3>
+                    <form class="contact" method="POST" action="{% url 'contact' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                            <button id="sendButton" type="submit" class="btn btn-primary" style="width: 30%">Send
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views import generic
+from django.views import generic, View
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
@@ -20,10 +20,18 @@ class PersonalTrainer(generic.View):
     """
 
 
-class Member(generic.View):
+class MemberView(View):
     """
     Implementation for the Member view
     """
+    template_name = 'member.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+    
+    def post(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
 
 
 def book_request_view(request):
@@ -74,6 +82,33 @@ def log_in(request):
 
 
 class UserProfile(generic.View):
-     """
+    """
     Implementation for the User profile view
     """
+    template_name = 'userprofile.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+    
+    def post(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+def contact(request):
+    """
+    To render the login in view.
+    """
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('contact')
+    else:
+        form = AuthenticationForm()
+    
+    context = {
+        'title': 'Contact',
+        'form' : form,
+    }
+    return render(request, 'contact.html', context)
