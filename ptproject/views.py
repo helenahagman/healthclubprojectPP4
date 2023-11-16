@@ -1,11 +1,11 @@
 from django.core.mail import send_mail
 from django.views import generic, View
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.conf import settings
-from .models import BookingRequest, UserProfile, Contact
+from .models import BookingRequest, Profile, Contact
 from .forms import RegistrationForm, ContactForm, BookingRequestForm
 
 
@@ -54,7 +54,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            return redirect('login')
     else:
         form = RegistrationForm()
     
@@ -67,14 +67,14 @@ def register(request):
 
 def log_in(request):
     """
-    To render the login in view.
+    To log in the user and redirect to the profile page
     """
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('index')
+            return redirect('Profile')
     else:
         form = AuthenticationForm()
     
@@ -85,11 +85,19 @@ def log_in(request):
     return render(request, 'login.html', context)
 
 
-class UserProfile(generic.View):
+def log_out(request):
+    """
+    To log out the user and redirect to start page
+    """
+    logout(request)
+    return redirect('index')
+ 
+
+class Profile(generic.View):
     """
     Implementation for the User profile view
     """
-    template_name = 'userprofile.html'
+    template_name = 'profile.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)

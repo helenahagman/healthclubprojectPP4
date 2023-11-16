@@ -58,7 +58,7 @@ class Contact(models.Model):
         return f'Contact message submitted by {self.name_contact} on {self.created_on}'
 
 
-class UserProfile(models.Model):
+class Profile(models.Model):
     """
     User profile page
     """
@@ -70,4 +70,4 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=50, null=True, blank=True, validators=[alpha_only])
 
     def __str__(self):
-        return f'{self.user} userprofile'
+        return f'{self.user} profile'

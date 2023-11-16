@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BookingRequest, UserProfile, Contact
+from .models import BookingRequest, Profile, Contact
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -21,7 +21,7 @@ class ContactAdmin(admin.ModelAdmin):
     list_display_links = ('name_contact',)
     search_fields = ['name_contact', 'email', 'contact_message', 'created_on']
 
-@admin.register(UserProfile)
+@admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'first_name', 'last_name', 'phone_number', 'email', )
     list_filter = ('user',)
