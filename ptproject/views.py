@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.views import generic
+from django.contrib.auth import login
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from .models import BookingRequest, UserProfile, Contact
+from .forms import RegistrationForm
 
 
 def index(request):
@@ -30,17 +33,25 @@ def book_request_view(request):
     return render(request, 'personaltrainer.html')
 
 
-def sign_in(request):
-    """
-    To render the sign in view.
-    """
-    return render(request, 'sign_in.html')
-
-
-class Register(generic.View):
+def register(request):
     """
     To render the registration view.
     """
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+    else:
+        form = RegistrationForm()
+    
+    context = {
+        'title': 'Register',
+        'form': form,
+    }
+    return render(request, 'register.html', context)
+
 
 def log_in(request):
     """
