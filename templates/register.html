@@ -19,9 +19,9 @@
                     <h3>{% trans "Register" %}</h3>
                     <h5>{% blocktrans %} Only a form away before you are registered! </h5>
                     <br>
-                    <p>Already a member? <a class="link" href="{% url 'login' %}">Log in</a>
                         {% endblocktrans %}
-                    </p>
+                        <p>Already a member? <a class="link" href="{% url 'login' %}">Log in</a>
+                        </p>
                     <form class="signup" method="POST"="{% url 'register' %}">
                         {% csrf_token %}
                         {{ form.as_p }}

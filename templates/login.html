@@ -19,8 +19,8 @@
                 <div class="card-body">
                     <h3>{% trans "Login" %}</h3>
                     <h5>{% blocktrans %} Welcome back! </h5>
-                    <p>Want to become a member? <a class="link" href="{% url 'register' %}">Register</a>
                         {% endblocktrans %}
+                    <p>Want to become a member? <a class="link" href="{% url 'register' %}">Register</a>
                     </p>
                     <form class="login" method="POST" action="{% url 'login' %}">
                         {% csrf_token %}
