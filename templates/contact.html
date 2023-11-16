@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block head_title %} {% trans "Register" %} {% endblock %}
+{% block head_title %} {% trans "Contact" %} {% endblock %}
 
 {% block content %}
 <div class="container">
@@ -17,10 +17,11 @@
                 </div>
                 <div class="card-body">
                     <h3>{% trans "Contact" %}</h3>
-                    <form class="contact" method="POST" action="{% url 'contact' %}">
+                    <form id="contactForm" class="contact" method="POST" action="{% url 'contact' %}">
                         {% csrf_token %}
                         {{ form.as_p }}
-                            <button id="sendButton" type="submit" class="btn btn-primary" style="width: 30%">Send
+                            <button id="sendButton" type="submit" class="btn btn-primary" style="width: 30%">
+                                Send
                             </button>
                         </div>
                     </form>
@@ -30,3 +31,17 @@
     </div>
 </div>
 {% endblock %}
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        emailjs.sendForm('service_b8gz1av', 'template_8j0ugds', this)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+                console.log('FAILED...', error);
+            });
+    });
+</script>

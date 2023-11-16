@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic, View
 from django.contrib.auth import login
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from .models import BookingRequest, UserProfile, Contact
@@ -96,16 +97,16 @@ class UserProfile(generic.View):
 
 def contact(request):
     """
-    To render the login in view.
+    To render the contact view.
     """
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = ContactForm(request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
+            form.save()
+            messages.success(request, 'Thank you, we will contact you shortly')
             return redirect('contact')
     else:
-        form = AuthenticationForm()
+        form = ContactForm()
     
     context = {
         'title': 'Contact',

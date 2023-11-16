@@ -1,6 +1,6 @@
 from . import views
 from django.urls import path
-from .views import register, MemberView
+from .views import register, MemberView, contact
 
 
 urlpatterns = [
@@ -15,5 +15,5 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("login/", views.log_in, name='login'),
     path("userprofile/", views.UserProfile.as_view(), name="userprofile"),
-    path("contact/", views.contact, name="contact",)
+    path("contact/", contact, name="contact",)
 ]
