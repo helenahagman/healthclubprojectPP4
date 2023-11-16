@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Booking request" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="https://res.cloudinary.com/dbjnqkn07/image/upload/v1699354020/healthclub-pp4/pexels-bich-tran-669986_1_hwbku7.jpg"
+                        class="img-fluid" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Fill in your details and select a date:</h5>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <br>
+
+                        <!-- Form feilds -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="{{ form.name.id_for_label }}">Name</label>
+                            {{ form.name }}
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="{{ form.phonenumber.id_for_label }}">Phone Number</label>
+                            {{ form.phonenumber }}
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="{{ form.email.id_for_label }}">Email</label>
+                            {{ form.email }}
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="{{ form.age.id_for_label }}">Age</label>
+                            {{ form.age }}
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="{{ form.gender.id_for_label }}">Gender</label>
+                            {{ form.gender }}
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="{{ form.message.id_for_label }}">Message</label>
+                            {{ form.message }}
+                        </div>
+
+                        <!-- Date input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="{{ form.date.id_for_label }}">Date</label>
+                            <input type="date" id="dateInput" class="form-control" />
+                            {{ form.date }}
+                        </div>
+
+                        <!-- Time input with options -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="{{ form.time.id_for_label }}">Time</label>
+                            <input type="time" id="timeInput" class="form-control" list="timeOptions" />
+                            <datalist id="timeOptions">
+                                <option value="12:00"></option>
+                                <option value="13:00"></option>
+                                <option value="14:00"></option>
+                                <option value="15:00"></option>
+                                <option value="16:00"></option>
+                                <option value="17:00"></option>
+                                <option value="18:00"></option>
+                            </datalist>
+                            {{ form.time }}
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="text-center">
+                            <button id="sendButton" type="submit" class="btn btn-primary" style="width: 30%">Send
+                                Request</button>
+                        </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.core.mail import send_mail
 from django.views import generic, View
 from django.contrib.auth import login
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from .models import BookingRequest, UserProfile, Contact
-from .forms import RegistrationForm, ContactForm
+from .forms import RegistrationForm, ContactForm, BookingRequestForm
 
 
 def index(request):
@@ -19,6 +19,8 @@ class PersonalTrainer(generic.View):
     """
     Implementation for the PersonalTrainer view
     """
+    def get(self, request, *args, **kwargs):
+        return render(request, 'personaltrainer.html')
 
 
 class MemberView(View):
@@ -96,20 +98,22 @@ class UserProfile(generic.View):
 
 
 def contact(request):
-    """
-    To render the contact view.
-    """
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Thank you, we will contact you shortly')
+            
+            subject = 'Contact Form Submission'
+            message = 'Thank you, we will get back to you shortly!'
+            from_email = settings.DEFAULT_FROM_EMAIL
+            recipient_list = ['health.club.project.email@gmail.com']
+
+            send_mail(subject, message, from_email, recipient_list)
+
+            messages.success(request, 'Your message has been sent.')
             return redirect('contact')
     else:
         form = ContactForm()
     
-    context = {
-        'title': 'Contact',
-        'form' : form,
-    }
+    context = {'title': 'Contact', 'form' : form}
     return render(request, 'contact.html', context)
