@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.views.decorators.csrf import csrf_protect
 from .models import Booking, Profile, Contact
 from .forms import RegistrationForm, ContactForm, BookingForm
 
@@ -48,7 +49,7 @@ class MemberView(View):
         return render(request, self.template_name)
 
 
-
+@csrf_protect
 def booking(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
