@@ -1,13 +1,13 @@
 from . import views
 from django.urls import path
-from .views import register, MemberView, contact, log_in, log_out, ProfileView, PersonalTrainerView
+from .views import register, MemberView, contact, log_in, log_out, ProfileView, PersonalTrainerView, BookView
 
 
 urlpatterns = [
     path("", views.index, name="index"),
     path("personaltrainer/", PersonalTrainerView.as_view(), name='personaltrainer'),
     path("member/", MemberView.as_view(), name="member"),
-    path("book/", views.book_request_view, name="book"),
+    path("book/", BookView.as_view(), name="book"),
     path("register/", register, name="register"),
     path("login/", log_in, name='login'),
     path("profile/", ProfileView.as_view, name="profile"),

@@ -25,6 +25,14 @@ class PersonalTrainerView(View):
         return render(request, 'personaltrainer.html')
 
 
+class BookView(View):
+    """
+    Implementation for the book view
+    """
+    def get(self, request, *args, **kwargs):
+        return render(request, 'book.html')
+
+
 class MemberView(View):
     """
     Implementation for the Member view
@@ -39,11 +47,28 @@ class MemberView(View):
 
 
 
-def book_request_view(request):
-    """
-    To render the booking request view.
-    """
-    return render(request, 'personaltrainer.html')
+def booking(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid:
+
+          name = form.cleaned_data['name']  
+          phonenumber = form.cleaned_data['phonenumber']  
+          email = form.cleaned_data['email']  
+          age = form.cleaned_data['age']  
+          gender = form.cleaned_data['gender']  
+          message = form.cleaned_data['message']  
+          date = form.cleaned_data['date']  
+          time = form.cleaned_data['time']
+
+          from_email = settings.DEFAULT_FROM_EMAIL
+
+          messages.success(request, 'Your request has been sent.')
+          return HttpResponseRedirect(reverse('booking'))
+    else:
+        form = BookingForm()
+
+    return render(request, 'personaltrainer.html', {'form': form})
 
 
 def register(request):
