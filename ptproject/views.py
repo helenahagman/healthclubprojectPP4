@@ -30,7 +30,8 @@ class BookView(View):
     Implementation for the book view
     """
     def get(self, request, *args, **kwargs):
-        return render(request, 'book.html')
+        form = BookingForm()
+        return render(request, 'book.html', {'form': form})
 
 
 class MemberView(View):
