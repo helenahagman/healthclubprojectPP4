@@ -2,7 +2,8 @@ from django.core.mail import send_mail
 from django.views import generic, View
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect 
+from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -52,24 +53,26 @@ def booking(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid:
+            # Save the form data to the Booking model
+            booking_instance = form.save(commit=False)
+            booking_instance.approved = False
+            booking_instance.save()
 
-          name = form.cleaned_data['name']  
-          phonenumber = form.cleaned_data['phonenumber']  
-          email = form.cleaned_data['email']  
-          age = form.cleaned_data['age']  
-          gender = form.cleaned_data['gender']  
-          message = form.cleaned_data['message']  
-          date = form.cleaned_data['date']  
-          time = form.cleaned_data['time']
-
-          from_email = settings.DEFAULT_FROM_EMAIL
-
-          messages.success(request, 'Your request has been sent.')
-          return HttpResponseRedirect(reverse('booking'))
+            name = form.cleaned_data['name']  
+            phonenumber = form.cleaned_data['phonenumber']  
+            email = form.cleaned_data['email']  
+            age = form.cleaned_data['age']  
+            gender = form.cleaned_data['gender']  
+            message = form.cleaned_data['message']  
+            date = form.cleaned_data['date']  
+            time = form.cleaned_data['time']
+            
+            messages.success(request, 'Your request has been sent.')
+            return HttpResponseRedirect(reverse('booking'))
     else:
         form = BookingForm()
 
-    return render(request, 'personaltrainer.html', {'form': form})
+    return render(request, 'book.html', {'form': form})
 
 
 def register(request):
