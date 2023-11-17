@@ -15,7 +15,7 @@ def alpha_only(value):
         raise ValidationError ('Only alphabetic characters are allowed.')
 
 
-class BookingRequest(models.Model):
+class Booking(models.Model):
     """
     Create a booking request form
     """

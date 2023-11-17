@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Contact, BookingRequest
+from .models import Contact, Booking
 
 
 class RegistrationForm(UserCreationForm):
@@ -18,12 +18,26 @@ class ContactForm(forms.ModelForm):
         fields = ['name_contact', 'email', 'contact_message']
 
 
-class BookingRequestForm(forms.ModelForm):
+class BookingForm(forms.ModelForm):
     class Meta:
-        model = BookingRequest
+        model = Booking
         fields = ['name', 'phonenumber', 'email', 'age', 'gender', 'message', 'date', 'time']
-    
-    widgets = {
-        'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-        'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-    }
+        labels = {
+            'name': 'Your Name',
+            'phonenumber': 'Phone Number',
+            'email': 'Email',
+            'age': 'Age',
+            'gender': 'Gender',
+            'message': 'Message',
+            'date': 'Preferred Date',
+            'time': 'Preferred Time',
+        }
+        help_texts = {
+            'date': 'Select a date.',
+            'time': 'Select a time.',
+        }
+        
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+        }

@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import BookingRequest, Profile, Contact
+from .models import Booking, Profile, Contact
 from django_summernote.admin import SummernoteModelAdmin
 
 
-@admin.register(BookingRequest)
-class BookingRequestAdmin(SummernoteModelAdmin):
+@admin.register(Booking)
+class BookingAdmin(SummernoteModelAdmin):
     list_display = ('name', 'phonenumber', 'email', 'age', 'gender', 'message', 'date', 'time', 'approved')
     search_fields = ('name', 'approved')
     list_filter = ('name',)

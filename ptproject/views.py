@@ -4,9 +4,10 @@ from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from .models import BookingRequest, Profile, Contact
-from .forms import RegistrationForm, ContactForm, BookingRequestForm
+from .models import Booking, Profile, Contact
+from .forms import RegistrationForm, ContactForm, BookingForm
 
 
 def index(request):
@@ -16,7 +17,7 @@ def index(request):
     return render(request, 'index.html')
 
 
-class PersonalTrainer(generic.View):
+class PersonalTrainerView(View):
     """
     Implementation for the PersonalTrainer view
     """
@@ -93,7 +94,7 @@ def log_out(request):
     return redirect('index')
  
 
-class Profile(generic.View):
+class ProfileView(View):
     """
     Implementation for the User profile view
     """
@@ -105,6 +106,19 @@ class Profile(generic.View):
     def post(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
+@login_required
+def profile_view(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    bookings = Booking.objects.filter(user=user)
+
+    context = {
+        'user': user,
+        'profile': profile,
+        'bookings': bookings,
+    }
+
+    return render(request, 'profile.html', context)
 
 def contact(request):
     if request.method == 'POST':
