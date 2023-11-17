@@ -83,17 +83,25 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('login')
+            form.save()
+            
+            new_user = authenticate(
+                username = form.cleaned_data.get('username'),
+                password = form.cleaned_data.get('password1')
+            )
+
+            login(request, new_user)
+
+            return redirect ('index')
+
     else:
-        form = RegistrationForm()
+        form = RegistrationForm(request)
     
     context = {
         'title': 'Register',
         'form': form,
     }
-    return render(request, 'register.html', context)
+    return render(request, 'account.html', context)
 
 
 def log_in(request):

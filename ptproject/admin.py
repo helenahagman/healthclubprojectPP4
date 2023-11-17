@@ -7,7 +7,7 @@ from django_summernote.admin import SummernoteModelAdmin
 class BookingAdmin(SummernoteModelAdmin):
     list_display = ('name', 'phonenumber', 'email', 'age', 'gender', 'message', 'date', 'time', 'approved')
     search_fields = ('name', 'approved')
-    list_filter = ('name',)
+    list_filter = ('name', 'date')
     actions = ['approve_booking']
 
     def approve_booking(self, request, queryset):
@@ -20,6 +20,7 @@ class ContactAdmin(admin.ModelAdmin):
     list_filter = ('name_contact', 'email', 'created_on',)
     list_display_links = ('name_contact',)
     search_fields = ['name_contact', 'email', 'contact_message', 'created_on']
+
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):

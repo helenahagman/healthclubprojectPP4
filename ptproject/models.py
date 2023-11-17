@@ -60,7 +60,7 @@ class Contact(models.Model):
 
 class Profile(models.Model):
     """
-    User profile page
+    User profile
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     email = models.EmailField(unique=True, default='default@example.com')
