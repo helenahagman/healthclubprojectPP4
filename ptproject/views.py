@@ -27,6 +27,14 @@ class PersonalTrainerView(View):
         return render(request, 'personaltrainer.html')
 
 
+class membersonlyView(View):
+    """
+    Implementation for the Membersonly view
+    """
+    def get(self, request, *args, **kwargs):
+        return render(request, 'membersonly.html')
+
+
 class BookView(View):
     """
     Implementation for the book view
@@ -101,7 +109,7 @@ def register(request):
         'title': 'Register',
         'form': form,
     }
-    return render(request, 'account.html', context)
+    return render(request, 'membersonly.html', context)
 
 
 def log_in(request):

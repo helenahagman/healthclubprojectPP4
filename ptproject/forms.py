@@ -19,9 +19,9 @@ class RegistrationForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=commit)
         if commit:
-            auth_user =authenticate(
+            auth_user = authenticate(
                 username=self.cleaned_data['username'],
-                password=self.cleaned_data['passord1'],
+                password=self.cleaned_data['password1'],
             )
             login(self.request, auth_user)
         
