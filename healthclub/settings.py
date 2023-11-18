@@ -31,6 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '*.ws-eu106.gitpod.io',
     '8000-helenahagma-healthclubp-idbkyd8gjos.ws-eu106.gitpod.io',
     'health-club-project-pp4.herokuapp.com',
     'health-club-project-pp4-aec30baa0c93.herokuapp.com',
