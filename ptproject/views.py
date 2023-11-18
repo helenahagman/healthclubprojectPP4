@@ -1,6 +1,6 @@
 from django.core.mail import send_mail
 from django.views import generic, View
-from django.contrib.auth import login, logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import render, redirect 
 from django.http import HttpResponseRedirect
@@ -8,6 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Booking, Profile, Contact
 from .forms import RegistrationForm, ContactForm, BookingForm
 
@@ -61,7 +62,7 @@ class MemberView(View):
 def booking(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             # Save the form data to the Booking model
             booking_instance = form.save(commit=False)
             booking_instance.approved = False
@@ -111,7 +112,7 @@ def register(request):
     }
     return render(request, 'membersonly.html', context)
 
-
+@csrf_protect
 def log_in(request):
     """
     To log in the user and redirect to the profile page
@@ -121,7 +122,7 @@ def log_in(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('Profile')
+            return redirect('profile')
     else:
         form = AuthenticationForm()
     
@@ -140,14 +141,24 @@ def log_out(request):
     return redirect('index')
  
 
-class ProfileView(View):
+class ProfileView(LoginRequiredMixin, View):
     """
     Implementation for the User profile view
     """
     template_name = 'profile.html'
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        bookings = Booking.objects.filter(user=user)
+
+        context = {
+            'user': user,
+            'profile': profile,
+            'bookings': bookings,
+        }
+        
+        return render(request, 'profile.html', context)
     
     def post(self, request, *args, **kwargs):
         return render(request, self.template_name)
