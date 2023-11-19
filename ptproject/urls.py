@@ -6,7 +6,7 @@ from .views import (
     contact,
     log_in,
     log_out,
-    profile_view,
+    ProfileView,
     PersonalTrainerView,
     BookView,
     membersonlyView,
@@ -20,7 +20,7 @@ urlpatterns = [
     path("book/", BookView.as_view(), name="booking"),
     path("register/", register, name="register"),
     path("login/", log_in, name='login'),
-    path("profile/", ProfileView.as_view, name="profile_view"),
+    path("profile/", ProfileView.as_view(), name="profile_view"),
     path("contact/", contact, name="contact"),
     path("logout/", log_out, name='logout'),
     path("membersonly/", membersonlyView.as_view(), name="membersonly")

@@ -1,6 +1,6 @@
 from django.urls import reverse
 from django.core.mail import send_mail
-from django.views import generic, View
+from django.views import View
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -137,7 +137,7 @@ def register(request):
         'title': 'Register',
         'form': form,
     }
-    return render(request, 'membersonly.html', context)
+    return render(request, 'login.html', context)
 
 @csrf_protect
 def log_in(request):
