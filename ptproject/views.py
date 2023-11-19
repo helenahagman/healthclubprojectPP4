@@ -1,14 +1,15 @@
+from django.urls import reverse
 from django.core.mail import send_mail
 from django.views import generic, View
-from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
-from django.shortcuts import render, redirect 
-from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.conf import settings
-from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect 
+from django.http import HttpResponseRedirect
+from django.conf import settings
 from .models import Booking, Profile, Contact
 from .forms import RegistrationForm, ContactForm, BookingForm
 
@@ -33,34 +34,23 @@ class membersonlyView(View):
     Implementation for the Membersonly view
     """
     def get(self, request, *args, **kwargs):
-        return render(request, 'membersonly.html')
+        if request.user.is_authenticated:
+            return render(request, 'membersonly.html')
+        else:
+            return redirect('login')
 
 
 class BookView(View):
     """
     Implementation for the book view
     """
+    template_name = 'book.html'
+
     def get(self, request, *args, **kwargs):
         form = BookingForm()
-        return render(request, 'book.html', {'form': form})
-
-
-class MemberView(View):
-    """
-    Implementation for the Member view
-    """
-    template_name = 'member.html'
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+        return render(request, self.template_name, {'form': form})
     
     def post(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
-
-@csrf_protect
-def booking(request):
-    if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
             # Save the form data to the Booking model
@@ -79,10 +69,47 @@ def booking(request):
             
             messages.success(request, 'Your request has been sent.')
             return HttpResponseRedirect(reverse('booking'))
-    else:
-        form = BookingForm()
+        else:
+            form = BookingForm()
 
-    return render(request, 'book.html', {'form': form})
+        return render(request, 'book.html', {'form': form})
+
+
+class MemberView(View):
+    """
+    Implementation for the Member view
+    """
+    template_name = 'member.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+    
+    def post(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class ProfileView(LoginRequiredMixin, View):
+    """
+    Implementation for the User profile view
+    """
+    template_name = 'profile_view.html'
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        bookings = Booking.objects.filter(user=user)
+
+        context = {
+            'user': user,
+            'profile': profile,
+            'bookings': bookings,
+        }
+        
+        return render(request, self.template_name, context)
+    
+    def post(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
 
 
 def register(request):
@@ -122,7 +149,7 @@ def log_in(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('profile')
+            return redirect('profile_view')
     else:
         form = AuthenticationForm()
     
@@ -132,7 +159,7 @@ def log_in(request):
     }
     return render(request, 'login.html', context)
 
-
+@login_required
 def log_out(request):
     """
     To log out the user and redirect to start page
@@ -141,27 +168,6 @@ def log_out(request):
     return redirect('index')
  
 
-class ProfileView(LoginRequiredMixin, View):
-    """
-    Implementation for the User profile view
-    """
-    template_name = 'profile.html'
-
-    def get(self, request, *args, **kwargs):
-        user = request.user
-        profile = Profile.objects.get(user=user)
-        bookings = Booking.objects.filter(user=user)
-
-        context = {
-            'user': user,
-            'profile': profile,
-            'bookings': bookings,
-        }
-        
-        return render(request, 'profile.html', context)
-    
-    def post(self, request, *args, **kwargs):
-        return render(request, self.template_name)
 
 @login_required
 def profile_view(request):
