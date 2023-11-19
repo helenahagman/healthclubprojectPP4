@@ -19,6 +19,7 @@ class Booking(models.Model):
     """
     Create a booking request form
     """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100, default='State your name')
     phonenumber = models.CharField(max_length=15, default='1234567890')
     email = models.EmailField(max_length=70, default='your@mail.com')
@@ -65,7 +66,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     email = models.EmailField(unique=True, default='default@example.com')
     phone_number = models.CharField(max_length=50, null=True, blank=True, validators=[num_validation])
-    password = models.CharField(max_length=50, null=True, blank=True)
     first_name = models.CharField(max_length=50, null=True, blank=True, validators=[alpha_only])
     last_name = models.CharField(max_length=50, null=True, blank=True, validators=[alpha_only])
 

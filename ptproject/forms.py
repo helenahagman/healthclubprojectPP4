@@ -1,23 +1,32 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from .models import Contact, Booking, Profile
 
 
 class RegistrationForm(UserCreationForm):
+    email = forms.EmailField()
+    phone_number = forms.CharField(max_length=15)
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=30)
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email', 'phone_number', 'password', 'password2']
     
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.request = request
-
-    email = forms.EmailField()
-
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
     
     def save(self, commit=True):
         user = super().save(commit=commit)
+        user.email = self.cleaned_data['email']
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        profile = user.profile
+        profile.phone_number = self.cleaned_data['phone_number']
+        profile.save()
         if commit:
             auth_user = authenticate(
                 username=self.cleaned_data['username'],

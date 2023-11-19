@@ -128,7 +128,7 @@ def register(request):
 
             login(request, new_user)
 
-            return redirect ('index')
+            return redirect ('login')
 
     else:
         form = RegistrationForm(request)
@@ -137,7 +137,7 @@ def register(request):
         'title': 'Register',
         'form': form,
     }
-    return render(request, 'login.html', context)
+    return render(request, 'membersonly.html', context)
 
 @csrf_protect
 def log_in(request):
