@@ -559,16 +559,16 @@ I wanted to build a good looking website where the functionality for online book
 <tr>
     <td>Contact form</td>
     <td>Send message to admin and get confirm message on the page in return</td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
+    <td>Tested to fill in the form with user 'Benji'</td>
+    <td>Pass</td>
+    <td>NOTE: The contact form is added to the admin as expected but the success message is currently not showing to the user.</td>
+  </tr>
 <tr>
     <td>Booking form</td>
     <td>Send filled in booking request form to the admin and get a confirm message on the page in return</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Tested to fill in the form with user 'Armen'</td>
+    <td>Pass</td>
+    <td>NOTE: The form is added to the admin as expected but the success message is currently not showing to he user.</td>
 </tr>
 <tr>
     <td></td>
