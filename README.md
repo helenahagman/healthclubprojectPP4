@@ -425,6 +425,18 @@ I wanted to build a good looking website where the functionality for online book
     <td>Pass</td>
     <td>Works as expected</td>
 </tr>
+<tr>
+    <td>Instagram link in the Footer</td>
+    <td>Redirect to the instagram log in page</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
+</tr>
+<tr>
+    <td>Facebook link in the Footer</td>
+    <td>Redirect to the facebook log in page</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
+</tr>
 <h3>Personal Trainer Page</h3>
 <table style="width:100%">
   <tr>
@@ -519,14 +531,14 @@ I wanted to build a good looking website where the functionality for online book
 <tr>
     <td>Register</td>
     <td>New user gets registered</td>
-    <td></td>
+    <td>Added information as a new user</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
     <td>Log in</td>
     <td>User gets logged in</td>
-    <td></td>
+    <td>Logged in with correct credentials</td>
     <td></td>
     <td></td>
 </tr>
@@ -546,14 +558,14 @@ I wanted to build a good looking website where the functionality for online book
 </tr>
 <tr>
     <td>Contact form</td>
-    <td>Send message to email and get confirm message</td>
+    <td>Send message to admin and get confirm message on the page in return</td>
     <td></td>
     <td></td>
     <td></td>
 </tr>
 <tr>
     <td>Booking form</td>
-    <td></td>
+    <td>Send filled in booking request form to the admin and get a confirm message on the page in return</td>
     <td></td>
     <td></td>
     <td></td>

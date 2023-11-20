@@ -48,7 +48,7 @@ class Contact(models.Model):
 
     name_contact = models.CharField(max_length=100)
     email = models.EmailField(unique=True, default='default@example.com')
-    contact_message = models.TextField(max_length=400, null=True, blank=True, validators=[alpha_only])
+    contact_message = models.TextField(max_length=400, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
