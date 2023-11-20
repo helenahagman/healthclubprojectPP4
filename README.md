@@ -625,6 +625,41 @@ I wanted to build a good looking website where the functionality for online book
     <td></td>
     <td></td>
   </tr>
+
+<h3>User Stories for the future</h3>
+<table style="width:100%">
+  <tr>
+    <th>User Story</th>
+    <th>Description</th>
+  </tr>
+<tr>
+    <td>Guest Login</td>
+    <td>As the user I want to be able to book PT sessions as a guest/one time user in the case that I do not want to register to the website or just make a one time booking</td>
+  </tr>
+<tr>
+    <td>Buy Memberships</td>
+    <td>As the owner I want to be able offer purchases for monthly memberships to the health club online to increase sales</td>
+  </tr>
+<tr>
+    <td>Menu selection</td>
+    <td>As the owner I want to offer a “menu” of different sessions to the customer to be able to increase sales. Exampel of sessions that could be offered: 1 hour PT session, 30 min PT session, Fitness test, Health check</td>
+  </tr>
+<tr>
+    <td>Online booking</td>
+    <td>As the owner I want to be able to have an online booking form for the user to book availble session directly on the site</td>
+  </tr>
+<tr>
+    <td>Avoid double bookings</td>
+    <td>As the owner I want to be able to avoid double bookings</td>
+  </tr>
+<tr>
+    <td>Cancellation</td>
+    <td>As a user I want to be able to cancel a booked session online and not have to call or send a message to admin.</td>
+  </tr>
+<tr>
+    <td>Online booking</td>
+    <td>As the owner I want to be able to have an online booking form for the user to book availble session directly on the site</td>
+  </tr>
 </ul>
 </ul>
 
