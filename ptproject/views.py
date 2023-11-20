@@ -183,12 +183,13 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            # save the form data to the contact model
+            contact_instance = form.save(commit=False)
+            contact_instance.save()
 
             name_contact = form.cleaned_data['name_contact']
             email = form.cleaned_data['email']
             contact_message = form.cleaned_data['contact_message']
-            
-            from_email = settings.DEFAULT_FROM_EMAIL
             
             messages.success(request, 'Your message has been sent.')
             return HttpResponseRedirect(reverse('contact'))
