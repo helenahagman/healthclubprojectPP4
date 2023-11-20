@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-body">
                     <h3>{% trans 'Booking' %}</h3>
-                    <form id="bookingForm" class="booking" method="POST" action="{% url 'book' %}">
+                    <form id="bookingForm" class="booking" method="POST" action="{% url 'booking' %}">
                         {% csrf_token %}
                         {{ form.as_p }}
                         

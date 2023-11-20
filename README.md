@@ -404,8 +404,8 @@ I wanted to build a good looking website where the functionality for online book
 <tr>
     <td>Register button un the Members card section</td>
     <td>Redirect to the register form</td>
-    <td></td>
-    <td></td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 <tr>
     <td>Personal Trainer link in the Navbar</td>
@@ -475,26 +475,36 @@ I wanted to build a good looking website where the functionality for online book
 <tr>
     <td>Register button</td>
     <td>Redirect to the register form</td>
-    <td></td>
-    <td></td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
+<h3>Login Page</h3>
+<table style="width:100%">
+  <tr>
+    <th>Test</th>
+    <th>Expected Outcome</th>
+    <th>Pass/Fail</th>
+    <th>Comment</th>
+  </tr>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Register Link</td>
+    <td>Redirect to the register form</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
+<h3>Register Page</h3>
+<table style="width:100%">
+  <tr>
+    <th>Test</th>
+    <th>Expected Outcome</th>
+    <th>Pass/Fail</th>
+    <th>Comment</th>
+  </tr>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Log in Link</td>
+    <td>Redirect to the log in form</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 
 <h3>Testing features and functions</h3>
@@ -521,11 +531,18 @@ I wanted to build a good looking website where the functionality for online book
     <td></td>
 </tr>
 <tr>
+    <td>Log in with wrong credentials</td>
+    <td>Expect error message</td>
+    <td>Tried to login with username/password that is not correct</td>
+    <td>Pass</td>
+    <td>Message: Please enter a correct username and password. Note that both fields may be case-sensitive. - as expected</td>
+</tr>
+<tr>
     <td>Log out</td>
     <td>Logged in user is logged out</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>The user gets logged out and the link in the navbar change to 'Log in'</td>
+    <td>Pass</td>
+    <td>When the page is update the link is updated but a message would be a nice feature for better visualisation and for the user to know they have been successfully logged out.</td>
 </tr>
 <tr>
     <td>Contact form</td>
