@@ -363,7 +363,7 @@ I wanted to build a good looking website where the functionality for online book
     <th>Comment</th>
   </tr>
 <tr>
-    <td>Start page</td>
+    <td>Index page</td>
     <td></td>
     <td></td>
     <td></td>
@@ -381,93 +381,75 @@ I wanted to build a good looking website where the functionality for online book
     <td></td>
 </tr>
 <ul>
-<h3>Start Page Testing</h3>
+<h3>Index Page Testing</h3>
 <table style="width:100%">
   <tr>
     <th>Test</th>
     <th>Expected Outcome</th>
-    <th>Result</th>
     <th>Pass/Fail</th>
+    <th>Comment</th>
   </tr>
 <tr>
-    <td></td>
-    <td></td>
+    <td>Read More button in Personal Trainer card section</td>
+    <td>Redirect to Personal Trainer Page</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
+</tr>
+<tr>
+    <td>Log in button in the Members card section</td>
+    <td>Redirect to Log in page</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
+</tr>
+<tr>
+    <td>Register button un the Members card section</td>
+    <td>Redirect to the register form</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Personal Trainer link in the Navbar</td>
+    <td>Redirect to the Persona Trainer Page</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Members link in the Navbar</td>
+    <td>Redirect to the Members page</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Log in link in the Navbar</td>
+    <td>Redirect to the log in form</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 <h3>Personal Trainer Page</h3>
 <table style="width:100%">
   <tr>
     <th>Test</th>
     <th>Expected Outcome</th>
-    <th>Result</th>
     <th>Pass/Fail</th>
+    <th>Comment</th>
   </tr>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Book session button</td>
+    <td>Redirect to the the Booking request form</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Contact button</td>
+    <td>Redirect to the contact form</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Read more button</td>
+    <td>Redirect to the Members page</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 
 <h3>Member Page</h3>
@@ -475,24 +457,24 @@ I wanted to build a good looking website where the functionality for online book
   <tr>
     <th>Test</th>
     <th>Expected Outcome</th>
-    <th>Result</th>
     <th>Pass/Fail</th>
+    <th>Comment</th>
   </tr>
 <tr>
-    <td>Link to </td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Contact button</td>
+    <td>Redirect to the contact form</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Log in button</td>
+    <td>Redirect to the log in form</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 <tr>
-    <td></td>
-    <td></td>
+    <td>Register button</td>
+    <td>Redirect to the register form</td>
     <td></td>
     <td></td>
 </tr>

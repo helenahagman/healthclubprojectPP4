@@ -119,16 +119,12 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_user = form.save()
             
-            new_user = authenticate(
-                username = form.cleaned_data.get('username'),
-                password = form.cleaned_data.get('password1')
-            )
-
+            # Log in the user when registered
             login(request, new_user)
 
-            return redirect ('login')
+            return redirect ('membersonly')
 
     else:
         form = RegistrationForm(request)
@@ -137,7 +133,7 @@ def register(request):
         'title': 'Register',
         'form': form,
     }
-    return render(request, 'membersonly.html', context)
+    return render(request, 'register.html', context)
 
 @csrf_protect
 def log_in(request):
