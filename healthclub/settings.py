@@ -38,7 +38,7 @@ ALLOWED_HOSTS = [
     'localhost'
     ]
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+
 
 # Application definition
 
