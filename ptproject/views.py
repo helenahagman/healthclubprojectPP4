@@ -162,7 +162,10 @@ def register(request):
             # Log in the user when registered
             login(request, new_user)
 
+            messages.success(request, 'Registration successful, you are now logged in.')
             return redirect ('membersonly')
+        else:
+            messages.error(request, 'Registration failed. Please try again.')
 
     else:
         form = RegistrationForm(request)
