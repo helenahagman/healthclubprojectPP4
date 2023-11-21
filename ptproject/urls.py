@@ -10,6 +10,7 @@ from .views import (
     PersonalTrainerView,
     BookView,
     membersonlyView,
+    EditProfileView,
 )
 
 
@@ -23,5 +24,6 @@ urlpatterns = [
     path("profile/", ProfileView.as_view(), name="profile_view"),
     path("contact/", contact, name="contact"),
     path("logout/", log_out, name='logout'),
-    path("membersonly/", membersonlyView.as_view(), name="membersonly")
+    path("membersonly/", membersonlyView.as_view(), name="membersonly"),
+    path("profile/edit/", EditProfileView.as_view(), name="edit_profile"),
 ]

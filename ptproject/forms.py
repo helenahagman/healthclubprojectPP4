@@ -69,3 +69,11 @@ class BookingForm(forms.ModelForm):
             'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
         }
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name', 'phone_number']
+    
+    def __init__(self, *args, **kwargs):
+       super(ProfileForm, self).__init__(*args, **kwargs)

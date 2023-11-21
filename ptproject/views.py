@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.conf import settings
 from .models import Booking, Profile, Contact
-from .forms import RegistrationForm, ContactForm, BookingForm
+from .forms import RegistrationForm, ContactForm, BookingForm, ProfileForm
 
 
 def index(request):
@@ -112,6 +112,25 @@ class ProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name)
 
 
+class EditProfileView(LoginRequiredMixin, View):
+    template_name = 'edit_profile.html'
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        profile, created = Profile.objects.get_or_create(user=user)
+        form = ProfileForm(instance=profile)
+        return render(request, self.template_name, {'form':form})
+    
+    def post(self, request, *args, **kwargs):
+        user =request.user
+        profile, created = Profile.objects.get_or_create(user=user)
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully')
+            return redirect('profile_view')
+        return render(request, self.template_name, {'form': form})
+
 
 def register(request):
     """
@@ -201,3 +220,4 @@ def contact(request):
         form = ContactForm()
     
     return render(request, 'contact.html', {'form': form})
+
