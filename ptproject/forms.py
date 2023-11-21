@@ -76,4 +76,4 @@ class ProfileForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'phone_number']
     
     def __init__(self, *args, **kwargs):
-       super(ProfileForm, self).__init__(*args, **kwargs)
+        super(ProfileForm, self).__init__(*args, **kwargs)
