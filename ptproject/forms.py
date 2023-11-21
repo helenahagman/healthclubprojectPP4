@@ -44,6 +44,14 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ['name_contact', 'email', 'contact_message']
+        labels = {
+            'name_contact': 'Your name',
+            'email': 'Email',
+            'contact_message': 'Message',
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super(ContactForm, self).__init__(*args, **kwargs)
 
 
 class BookingForm(forms.ModelForm):
@@ -66,8 +74,14 @@ class BookingForm(forms.ModelForm):
         }
         
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'placeholder': 'State your name'}),
+            'phonenumber': forms.TextInput(attrs={'placeholder': '1234567890'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'your@mail.com'}),
+            'age': forms.NumberInput(attrs={'placeholder': 'Enter your age'}),
+            'gender': forms.Select(attrs={'placeholder': 'Select your gender'}),
+            'message': forms.Textarea(attrs={'placeholder': 'Enter your message'}),
+            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'placeholder': 'Select a date'}),
+            'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'placeholder': 'Select a time'}),
         }
 
 class ProfileForm(forms.ModelForm):
