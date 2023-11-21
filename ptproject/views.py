@@ -134,10 +134,10 @@ class EditProfileView(LoginRequiredMixin, View):
         user = request.user
         profile, created = Profile.objects.get_or_create(user=user)
         form = ProfileForm(instance=profile)
-        return render(request, self.template_name, {'form':form})
+        return render(request, self.template_name, {'form': form})
     
     def post(self, request, *args, **kwargs):
-        user =request.user
+        user = request.user
         profile, created = Profile.objects.get_or_create(user=user)
         form = ProfileForm(request.POST, instance=profile)
         if form.is_valid():
