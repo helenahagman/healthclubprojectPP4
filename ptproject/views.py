@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect 
+from django.shortcuts import render, redirect, get_object_or_404 
 from django.http import HttpResponseRedirect
 from django.conf import settings
 from .models import Booking, Profile, Contact
@@ -92,11 +92,11 @@ class ProfileView(LoginRequiredMixin, View):
     """
     Implementation for the User profile view
     """
-    template_name = 'profile_view.html'
+    template_name = 'profile.html'
 
     def get(self, request, *args, **kwargs):
         user = request.user
-        profile = Profile.objects.get(user=user)
+        profile, created = Profile.objects.get_or_create(user=user)
         bookings = Booking.objects.filter(user=user)
 
         context = {
@@ -106,6 +106,7 @@ class ProfileView(LoginRequiredMixin, View):
         }
         
         return render(request, self.template_name, context)
+    
     
     def post(self, request, *args, **kwargs):
         return render(request, self.template_name)
@@ -121,6 +122,9 @@ def register(request):
         if form.is_valid():
             new_user = form.save()
             
+            # Create a Profile ojbect for the new user
+            Profile.objects.create(user=new_user)
+
             # Log in the user when registered
             login(request, new_user)
 
