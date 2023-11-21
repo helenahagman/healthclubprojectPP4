@@ -1,10 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Edit Profile</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
+<section>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <img class="img-fluid"
+                        src="https://res.cloudinary.com/dbjnqkn07/image/upload/v1692358156/healthclub-pp4/pexels-victor-freitas-703014_mwhg9x.jpg"
+                        alt="..." />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5">    
+                    <h2>Edit Profile</h2>
+                        <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                            <button type="submit">Save</button>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
