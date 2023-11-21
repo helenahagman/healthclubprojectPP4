@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.core.mail import send_mail
 from django.views import View
+from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -46,8 +47,21 @@ class BookView(View):
     """
     template_name = 'book.html'
 
+    @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
-        form = BookingForm()
+        # check if the user is authenticated
+        user = request.user
+        if user.is_authenticated:
+            # If authenticated, pre-fill form with user information
+            profile = Profile.objects.get_or_create(user=user) [0]
+            initial_data = {
+                'name': user.get_full_name(),
+                'email': user.email,
+            }
+            form = BookingForm(initial=initial_data)
+        else:
+            form = BookingForm()
+
         return render(request, self.template_name, {'form': form})
     
     def post(self, request, *args, **kwargs):
@@ -56,6 +70,7 @@ class BookView(View):
             # Save the form data to the Booking model
             booking_instance = form.save(commit=False)
             booking_instance.approved = False
+            booking_instance.user = request.user 
             booking_instance.save()
 
             name = form.cleaned_data['name']  
