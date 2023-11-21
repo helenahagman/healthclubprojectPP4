@@ -15,8 +15,8 @@
                 <div class="p-5">    
                     <h2>Edit Profile</h2>
                         <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
+                            {% csrf_token %}
+                            {{ form.as_p }}
                             <button type="submit">Save</button>
                         </form>
                 </div>
