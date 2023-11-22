@@ -518,6 +518,46 @@ I wanted to build a good looking website where the functionality for online book
     <td>Pass</td>
     <td>Works as expected</td>
 </tr>
+<h3>Profile Page</h3>
+<table style="width:100%">
+  <tr>
+    <th>Test</th>
+    <th>Expected Outcome</th>
+    <th>Pass/Fail</th>
+    <th>Comment</th>
+  </tr>
+<tr>
+    <td>Profile information</td>
+    <td>Display the profile information from the database to the logged in user</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Edit profile link</td>
+    <td>Give the logged in user the option to update and edit the profile information from the database</td>
+    <td>Pass/Fail</td>
+    <td>The link works and the information can be edited however the information is only updated to the database ans not visible on the profile page.</td>
+</tr>
+<tr>
+    <td>Booking requests</td>
+    <td>Display the logged in users personal trainer booking requests</td>
+    <td>Pass</td>
+    <td>The booking request displays with date requested - its currently not showing if the request is accepted or denied, this could be a future feature</td>
+</tr>
+<h3>MembersOnly Page</h3>
+<table style="width:100%">
+  <tr>
+    <th>Test</th>
+    <th>Expected Outcome</th>
+    <th>Pass/Fail</th>
+    <th>Comment</th>
+  </tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
 
 <h3>Testing features and functions</h3>
 <table style="width:100%">
