@@ -11,6 +11,7 @@ from .views import (
     BookView,
     membersonlyView,
     EditProfileView,
+    CustomSignupView,
 )
 
 
@@ -19,7 +20,8 @@ urlpatterns = [
     path("personaltrainer/", PersonalTrainerView.as_view(), name='personaltrainer'),
     path("member/", MemberView.as_view(), name="member"),
     path("book/", BookView.as_view(), name="booking"),
-    path("accounts/register/", register, name="register"),
+    path("accounts/register/", register, name="account_signup"),
+    path("accounts/signup/", CustomSignupView.as_view(), name="custom_signup"),
     path("accounts/login/", log_in, name='login'),
     path("profile/", ProfileView.as_view(), name="profile_view"),
     path("contact/", contact, name="contact"),

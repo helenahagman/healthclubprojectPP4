@@ -1,3 +1,4 @@
+from django import forms
 from django.urls import reverse
 from django.core.mail import send_mail
 from django.views import View
@@ -11,8 +12,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404 
 from django.http import HttpResponseRedirect
 from django.conf import settings
+from allauth.account.views import SignupView
+from allauth.account.forms import SignupForm
 from .models import Booking, Profile, Contact
-from .forms import RegistrationForm, ContactForm, BookingForm, ProfileForm
+from .forms import ContactForm, BookingForm, ProfileForm, CustomSignupForm
 
 
 def index(request):
@@ -147,34 +150,26 @@ class EditProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name, {'form': form})
 
 
+class CustomSignupForm(SignupForm):
+    phone_number = forms.CharField(max_length=15)
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=30)
+
+
+class CustomSignupView(SignupView):
+    form_class = CustomSignupForm
+
 def register(request):
-    """
-    To render the registration view.
-    """
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = CustomSignupForm(request.POST)
         if form.is_valid():
-            new_user = form.save()
-            
-            # Create a Profile ojbect for the new user
-            Profile.objects.create(user=new_user)
-
-            # Log in the user when registered
-            login(request, new_user)
-
-            messages.success(request, 'Registration successful, you are now logged in.')
-            return redirect ('membersonly')
-        else:
-            messages.error(request, 'Registration failed. Please try again.')
-
+            form.save()
+            return redirect('membersonly')
     else:
-        form = RegistrationForm(request)
-    
-    context = {
-        'title': 'Register',
-        'form': form,
-    }
-    return render(request, 'register.html', context)
+        form = CustomSignupForm()
+
+    return render(request, 'signup.html', {'form': form})
+
 
 @csrf_protect
 def log_in(request):
