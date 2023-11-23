@@ -1,7 +1,7 @@
-<h1>The Personal Trainer Project</h1>
-<p><img src="amiresponsive.JPG" alt="Am I Responsive"></li></p> #add link
+<h1>The Health Club Project</h1>
+<p><img src="https://res.cloudinary.com/dbjnqkn07/image/upload/v1700732164/healthclub-pp4/AmIResponsive_ekzd2n.jpg" alt="Am I Responsive"></li></p>
 
-<h4 href="https://github.com/helenahagman/the-personal-trainer-project/tree/main" > View The Personal Trainer Project on Github Pages </h3>
+<h4 href="https://github.com/helenahagman/healthclubprojectPP4" > View The Health Club Project on Github Pages </h3>
 <br>
 <h4 href="https://ptproject-ec6a8ad157bf.herokuapp.com/">Live Site</h4>
 
