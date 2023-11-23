@@ -185,7 +185,8 @@ I wanted to build a good looking website where the functionality for online book
   <li>Hoover function on menue items and buttons</li>
   <li>Icons for social media links insted of text</li>
   <li>Use the same layout on all pages</li>
-</ul></p>
+</ul>
+</p>
 
 <h2>Technology</h2>
 
