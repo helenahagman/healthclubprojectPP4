@@ -209,9 +209,9 @@ I wanted to build a good looking website where the functionality for online book
 <p>Testing features, accessibility, links, responsiveness have been done throughout the project and after every step of the way tests have been performed to make sure that the new inserts has been working correctly and corrected thereafter.</p>
 <ul>
 <h3>W3C Validator</h3>
-<a href=""></a>
+<a href="https://res.cloudinary.com/dbjnqkn07/image/upload/v1700728815/healthclub-pp4/Htmlcheck_uydkqt.jpg"></a>
 <h3>Lighthouse</h3>
-<a href=""></a>
+<a href="https://res.cloudinary.com/dbjnqkn07/image/upload/v1700729124/healthclub-pp4/lighthouse_vke3yw.jpg"></a>
 <h3>Known Bugs</h3>
 <table style="width:100%">
   <tr>
@@ -221,11 +221,24 @@ I wanted to build a good looking website where the functionality for online book
     <th>Comment</th>
   </tr>
 <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Register</td>
+    <td>The form should register a new user and add the information to the database</td>
+    <td>Nothing happens</td>
+    <td>I have tried to resolve this with tutoring, slack, google, the instruction videos and still have not been able to resolve the issue, I even tried to do the entire project all over but still missing something.</td>
 </tr>
+<tr>
+    <td>Edit profile</td>
+    <td>When the user updates the profile information the information should be updated to the database and displayed in the profile view</td>
+    <td>The information is updated in the database but not displayed for the user</td>
+    <td>This would be sorted in an updated version</td>
+</tr>
+<tr>
+    <td>Admin</td>
+    <td>The admin should look the same as it does locally</td>
+    <td>The admin looks weird on the live site</td>
+    <td>This will be sorted in an updated version</td>
+</tr>
+
 <h3>Testing User Stories</h3>
 <table style="width:100%">
   <tr>
@@ -237,121 +250,87 @@ I wanted to build a good looking website where the functionality for online book
   </tr>
 <tr>
     <td>User Story: As a current user I want to be able to login</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>When logged in the user should be redirected to the profile page</td>
+    <td>Logged in with AppAdmin and PassW0rd</td>
+    <td>Pass</td>
+    <td>Worked as expected</td>
 </tr>
 <tr>
     <td>User Story:As a new user I want to be able to register</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>A new user whould be able to register and then be redirected to the profile page</td>
+    <td>Tried to register a new user</td>
+    <td>Fail</td>
+    <td>Known bug</td>
 </tr>
 <tr>
-    <td>User Story:As a current user I want to be able to see available personal trainer sessions</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>User Story:As a user I want to be able to get information on what is offered on the site</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>User Story:As a user I want to be able to book personal trainer sessions</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>User Story:As a current user I want to be able to book personal trainer sessions</td>
+    <td>When logged in the user can send a request for a personal trainer session</td>
+    <td>Filled in the form and sent the request</td>
+    <td>Pass</td>
+    <td>The form is added in the admin - a future feature could be a message to the user that the form has been sent</td>
 </tr>
 <tr>
     <td>User Story:As a user I want to be able to cancel booked sessions</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr><tr>
+    <td>Cancel a booked and confirmed personal trainer session</td>
+    <td>None</td>
+    <td>None</td>
+    <td>Future feature</td>
+</tr>
+<tr>
     <td>User Story:As a user I want to be able to sign up for membership</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Membership signup</td>
+    <td>None</td>
+    <td>None</td>
+    <td>Future feature</td>
 </tr>
 <tr>
     <td>User Story:As a user I want to be able to get in contact with the facility</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Contact form sent to the admin</td>
+    <td>Filled in contact form</td>
+    <td>Pass</td>
+    <td>The form is sent and added to the admin - a message to the user will be a future feature</td>
 </tr>
 <tr>
     <td>User Story:As a current user I want to be able to see registered information that the owner has on file</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>User Story:As the owner I want to be able to provide information about the company</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>User Story:As the owner I want to be able to offer Memberships</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Profile page</td>
+    <td>Logged in and looked on the profile page</td>
+    <td>Fail</td>
+    <td>The only informaiton displayed is the username, email and phonenumber but first and last name are not displayed as they should</td>
 </tr>
 <tr>
     <td>User Story:As the owner I want to be able to offer Bookable Personal Trainer Sessions</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>The book request form</td>
+    <td>The form is added to admin and can be approved with an admin status profile</td>
+    <td>Pass</td>
+    <td>Future updates should be to be able to deny and also send reply directly to the user</td>
 </tr>
 <tr>
     <td>User Story:As the owner I want to be able to log in as the administrator</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Admin login</td>
+    <td>Logged in with AppAdmin and PassW0rd</td>
+    <td>Pass</td>
+    <td>Works as expected</td>
 </tr>
 <tr>
-    <td>User Story:As the owner I want to be able to communicate with users</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>User Story:As the owner I want to be able to send messages to registered users</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>User Story:As the owner I want to be able to communicate send messages to registered users</td>
+    <td>Contact form</td>
+    <td>Contact form test</td>
+    <td>Pass</td>
+    <td>The information is added to the database next would be to add more functionality to be able to send direct messages and newsletters</td>
 </tr>
 <tr>
     <td>User Story:As the owner I want to be able to see registered users</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Admin panel</td>
+    <td>Logged in as admin</td>
+    <td>Pass</td>
+    <td>Information displayed as expected (part from the layout on the admin page)</td>
 </tr>
 <tr>
     <td>User Story:As the owner I want to be able to handle booked sessions</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Approve requested bookings</td>
+    <td>Clicked the approve button the booking request</td>
+    <td>Pass</td>
+    <td>Works - more functionality should be added</td>
 </tr>
 
 <h3>Testing Pages</h3>
@@ -364,21 +343,21 @@ I wanted to build a good looking website where the functionality for online book
   </tr>
 <tr>
     <td>Index page</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Pass</td>
+    <td>Pass</td>
+    <td>Needs some work on the layout</td>
 </tr>
 <tr>
     <td>Personal Trainer Page</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Pass</td>
+    <td>Pass</td>
+    <td>Needs some work on the layout</td>
 </tr>
 <tr>
     <td>Member Page</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Pass</td>
+    <td>Pass</td>
+    <td>Needs some work on the layout</td>
 </tr>
 <ul>
 <h3>Index Page Testing</h3>
@@ -404,8 +383,8 @@ I wanted to build a good looking website where the functionality for online book
 <tr>
     <td>Register button un the Members card section</td>
     <td>Redirect to the register form</td>
-    <td>Pass</td>
-    <td>Works as expected</td>
+    <td>Fail</td>
+    <td>Known bug</td>
 </tr>
 <tr>
     <td>Personal Trainer link in the Navbar</td>
@@ -529,8 +508,8 @@ I wanted to build a good looking website where the functionality for online book
 <tr>
     <td>Profile information</td>
     <td>Display the profile information from the database to the logged in user</td>
-    <td></td>
-    <td></td>
+    <td>None</td>
+    <td>Does not display all the information</td>
 </tr>
 <tr>
     <td>Edit profile link</td>
@@ -544,20 +523,7 @@ I wanted to build a good looking website where the functionality for online book
     <td>Pass</td>
     <td>The booking request displays with date requested - its currently not showing if the request is accepted or denied, this could be a future feature</td>
 </tr>
-<h3>MembersOnly Page</h3>
-<table style="width:100%">
-  <tr>
-    <th>Test</th>
-    <th>Expected Outcome</th>
-    <th>Pass/Fail</th>
-    <th>Comment</th>
-  </tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
+
 
 <h3>Testing features and functions</h3>
 <table style="width:100%">
@@ -572,15 +538,15 @@ I wanted to build a good looking website where the functionality for online book
     <td>Register</td>
     <td>New user gets registered</td>
     <td>Added information as a new user</td>
-    <td></td>
-    <td></td>
+    <td>Not working as of this moment</td>
+    <td>Fail</td>
 </tr>
 <tr>
     <td>Log in</td>
     <td>User gets logged in</td>
     <td>Logged in with correct credentials</td>
-    <td></td>
-    <td></td>
+    <td>Logged in as expected</td>
+    <td>Pass</td>
 </tr>
 <tr>
     <td>Log in with wrong credentials</td>
@@ -610,61 +576,9 @@ I wanted to build a good looking website where the functionality for online book
     <td>Pass</td>
     <td>NOTE: The form is added to the admin as expected but the success message is currently not showing to he user.</td>
 </tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
 </ul>
 </ul>
 
-<h3>Error handling</h3>
-<table style="width:100%">
-  <tr>
-    <th>Error</th>
-    <th>Description</th>
-    <th>Handling</th>
-    <th>Result</th>
-  </tr>
-<tr>
-    <td>Pages not loadning</td>
-    <td>Indention and syntax errors</td>
-    <td>Updated models.py, admin.py and views.py</td>
-    <td>Pages loadning as expected</td>
-  </tr>
-<tr>
-    <td>Links in header not working</td>
-    <td>404</td>
-    <td>Updated urlpatterns</td>
-    <td>Links now work as expected</td>
-  </tr>
-<tr>
-    <td>Images not loadning on member.html</td>
-    <td>Error at line 33 in template member.html</td>
-    <td>Corrected src on line 33</td>
-    <td>Images loading as expected</td>
-  </tr>
-<tr>
-    <td>Header image only showing on index.html page</td>
-    <td>Inheritance error</td>
-    <td>Corrected template tag for img</td>
-    <td>Header image now showning on all pages</td>
-  </tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
 
 <h3>User Stories for the future</h3>
 <table style="width:100%">
@@ -700,6 +614,10 @@ I wanted to build a good looking website where the functionality for online book
     <td>Online booking</td>
     <td>As the owner I want to be able to have an online booking form for the user to book availble session directly on the site</td>
   </tr>
+<tr>
+    <td>Registration</td>
+    <td>As a new user I want to be able to register.</td>
+  </tr>
 </ul>
 </ul>
 
@@ -724,13 +642,12 @@ I wanted to build a good looking website where the functionality for online book
  <h3>Known unsolved bugs</h3>
 <br>
 <li>
-<p>App looks strange on live site</p>
-<p>Menu link on smaller screens dont open</p>
-<p>Images on live site</p>
-<p>Book session button on Index page</p>
-<p>Link to Sign in on Register page</p>
-<p>Link to Register on Sign in page</p>
-<p>Contact post do not work on live site</p>
+<p>The navbar and the main content is not corresponding as I would like</p>
+<p>Admin pages including log in page looks strange</p>
+<p>Profile page not displayed as expected, all information is not added</p>
+<p>Registration form is not working</p>
+<p>Success messages are not displayed as expected</p>
+<p>EmailJS was to be used with the contact form but not implemented correctly</p>
 </li>
 <br>
 
@@ -750,5 +667,6 @@ I wanted to build a good looking website where the functionality for online book
 <li><a href="https://www.digitalocean.com">DigitalOcean</a></li>
 <p>Problem solving and ideas</p>
 <br>
-<p>I used the walkthrough in the Codeinstitute section "Startbootstrap clean-blog URL change" to add the clean-blog theme from bootstrap to style my pages.</p>
+<p>I used the walkthrough in the Codeinstitute and used this as a basis for the project.</p>
+<p>I have encountered several issues along the way and there are still work to be done. I have started from scratch twice in this proccess and I am learning something new each time.</p>
 <p>Thank you to The Code Institute for material, instructions and connection to the community in Slack</p>
