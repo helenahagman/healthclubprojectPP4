@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html class="h-100">
+<html lang="en">
 
 <head>
     <title>The Personal Trainer Project</title>
@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Health club/gym to help you get in shape, loose weight or build muscles">
+    <meta name="keywords" content="Health Club, personaltrainer, gym, loose weight, gain muscles, get in shape">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180"
@@ -31,10 +32,9 @@
     </script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
     </script>
-    <script type="text/javascript">
+    <script>
         (function(){
             emailjs.init("RO0elmR_iHiWZiyEO");
             emailjs.send('service_b8gz1av', 'template_8j0ugds', templateParams)
@@ -102,10 +102,8 @@
 
     <!-- Main Content-->
     <div class="container">
-
         {% block content%}
         {% endblock %}
-
     </div>
 
     <hr>
@@ -136,8 +134,8 @@
 
     <!-- Core theme JS-->
     <script src="{% static 'js/clean-blog.min.js' %}"></script>
-    <!-- font awesome script 
-    <script src="https://kit.fontawesome.com/c7dbda0798.js" crossorigin="anonymous"></script>-->
+    <!-- font awesome script -->
+    <script src="https://kit.fontawesome.com/c7dbda0798.js" crossorigin="anonymous"></script>
 
     <!-- Include the function.js file -->
     <script src="{% static 'js/function.js' %}"></script>

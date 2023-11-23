@@ -93,7 +93,7 @@ I wanted to build a good looking website where the functionality for online book
 
 <h5>User needs:</h5>
 <ul>
-<li>User Story: As a current user I want to be able to login</li>
+<li>User Story:As a current user I want to be able to login</li>
 <li>User Story:As a new user I want to be able to register</li>
 <li>User Story:As a current user I want to be able to see available personal trainer sessions</li>
 <li>User Story:As a user I want to be able to get information on what is offered on the site</li>
@@ -152,7 +152,7 @@ I wanted to build a good looking website where the functionality for online book
 <a href="https://www.pexels.com/sv-se/">Pexels Free Images</a>
 
 <h3>Wire Frames</h3>
-<h5>Wireframes were created using Miro and was created for mobile, tablet and desktop views.</h5>
+<h5>Wireframes were created using Miro and was created for mobile, tablet and desktop views. As a part of the development of this page an agile approach has been used and therefor the end result may differ from the original wire frames.</h5>
 <a href=” https://miro.com/app/board/uXjVM94tSQs=/?share_link_id=555048984575” >Miro Wire Frames</a>
 
 <h3>Features</h3>
@@ -175,13 +175,14 @@ I wanted to build a good looking website where the functionality for online book
   <li>Short descriptive information along with an image, below that two postcards with link to the contact form and the login and register form</li>
 </ul>
 
+
 <h3>Accessability</h3>
 <p>Throughout the process of building the website I have tried to think of the accessibility to make it as user friendly as possible. I have used the best of my knowledge to:
 <ul>
   <li>Use semantic HTML</li>
-  <li>Sufficient color contrasts</li>
-  <li>Images that fit the purpose</li>
-  <li>Hoover function on the menue items and buttons</li>
+  <li>Add sufficient color contrasts</li>
+  <li>Use images that fit the purpose</li>
+  <li>Hoover function on menue items and buttons</li>
   <li>Icons for social media links insted of text</li>
   <li>Use the same layout on all pages</li>
 </ul></p>
@@ -198,11 +199,9 @@ I wanted to build a good looking website where the functionality for online book
   <li>Favicon - icons</li>
   <li>ElephantSQL - database</li>
   <li>Heroku - deployment</li>
-  <li>EmailJS - contact</li>
   <li>Trello - KANBAN Board</li>
   <li>Miro - wireframes</li>
   <li>Pexels - images</li>
-  <li></li>
 </ul>
 
 <h2>Testing</h2>
