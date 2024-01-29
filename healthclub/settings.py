@@ -36,7 +36,7 @@ ALLOWED_HOSTS = [
     'health-club-project-pp4.herokuapp.com',
     'health-club-project-pp4-aec30baa0c93.herokuapp.com',
     'localhost'
-    ]
+]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -97,17 +97,19 @@ WSGI_APPLICATION = 'healthclub.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
- #     'default': {
- #         'ENGINE': 'django.db.backends.sqlite3',
- #         'NAME': BASE_DIR / 'db.sqlite3',
- #     }
- # }
     
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+# DATABASES = {
+#    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+# }
 
+# Ensure DATABASE_URL is decoded if it's bytes
+database_url = os.environ.get("DATABASE_URL")
+print("DATABASE_URL Type:", type(database_url))
+if isinstance(database_url, bytes):
+   database_url = database_url.decode('utf-8')
+
+# Configure the database settings
+DATABASES = {'default': dj_database_url.parse(database_url)}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -150,7 +152,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
  
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
