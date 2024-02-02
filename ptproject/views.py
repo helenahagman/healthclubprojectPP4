@@ -15,7 +15,7 @@ from django.conf import settings
 from allauth.account.views import SignupView
 from allauth.account.forms import SignupForm
 from .models import Booking, Profile, Contact
-from .forms import ContactForm, BookingForm, ProfileForm, CustomSignupForm
+from .forms import ContactForm, BookingForm, ProfileForm, SignUpForm
 
 
 def index(request):
@@ -150,25 +150,39 @@ class EditProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name, {'form': form})
 
 
-class CustomSignupForm(SignupForm):
-    phone_number = forms.CharField(max_length=15)
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
+# class CustomSignupForm(SignupForm):
+#     phone_number = forms.CharField(max_length=15)
+#     first_name = forms.CharField(max_length=30)
+#     last_name = forms.CharField(max_length=30)
 
-
-class CustomSignupView(SignupView):
-    form_class = CustomSignupForm
-
-def register(request):
+def signup(request):
     if request.method == 'POST':
-        form = CustomSignupForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('membersonly')
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('profile')  
     else:
-        form = CustomSignupForm()
-
+        form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+
+# class CustomSignupView(SignupView):
+#     form_class = CustomSignupForm
+
+# def register(request):
+#     if request.method == 'POST':
+#         form = CustomSignupForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('membersonly')
+#     else:
+#         form = CustomSignupForm()
+
+#     return render(request, 'signup.html', {'form': form})
 
 
 @csrf_protect

@@ -42,6 +42,10 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-helenahagma-healthclubp-xd16582m4yh.ws-eu107.gitpod.io',
+]
+
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Application definition
@@ -188,3 +192,6 @@ CLOUDINARY_STORAGE = {
 
 # Default file storage for media files
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+LOGIN_REDIRECT_URL = 'profile'
+LOGOUT_REDIRECT_URL = 'home'

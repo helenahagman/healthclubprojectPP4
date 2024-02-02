@@ -59,7 +59,14 @@ class ProfileForm(forms.ModelForm):
         super(ProfileForm, self).__init__(*args, **kwargs)
 
 
-class CustomSignupForm(SignupForm):
-    phone_number = forms.CharField(max_length=15)
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
+# class CustomSignupForm(SignupForm):
+#     phone_number = forms.CharField(max_length=15)
+#     first_name = forms.CharField(max_length=30)
+#     last_name = forms.CharField(max_length=30)
+
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField(max_length=254, help_text='Required information')
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2',)
