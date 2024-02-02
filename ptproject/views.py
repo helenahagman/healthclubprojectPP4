@@ -170,19 +170,25 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-# class CustomSignupView(SignupView):
-#     form_class = CustomSignupForm
+class CustomSignupView(SignupView):
+    template_name = 'account/signup.html'
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = CustomSignupForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('membersonly')
-#     else:
-#         form = CustomSignupForm()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['header'] = 'Register now'
+        context['subheading'] = 'Make smart choices and live a healthier life.'
+        return context
+        
+def register(request):
+    if request.method == 'POST':
+        form = CustomSignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('membersonly')
+    else:
+        form = CustomSignupForm()
 
-#     return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
 
 
 @csrf_protect
@@ -248,3 +254,38 @@ def contact(request):
     
     return render(request, 'contact.html', {'form': form})
 
+
+def personal_trainer(request):
+    context = {
+        'header': 'Personal Trainer',
+        'subheading': 'A session with a Personal Trainer can make the whole difference.',
+    }
+    return render(request, 'personaltrainer.html', context)
+
+def members(request):
+    context = {
+        'header': 'Members',
+        'subheading': 'As a member you get access to all the best offers and news!',
+    }
+    return render(request, 'member.html', context)
+
+def login(request):
+    context = {
+        'header': 'Stay active',
+        'subheading': 'Daily exercise helps you to stay strong and healthy.',
+    }
+    return render(request, 'login.html', context)
+
+def signup(request):
+    context = {
+        'header': 'Welcome',
+        'subheading': 'Make smart choices and live a healthier life.',
+    }
+    return render(request, 'signup.html', context)
+
+def contact(request):
+    context = {
+        'header': 'Contact us',
+        'subheading': 'We are here for you, fill in the form and let us know whatäs on your mind',
+    }
+    return render(request, 'contact.html', context)

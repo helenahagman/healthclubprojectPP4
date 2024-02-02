@@ -2,7 +2,7 @@ from . import views
 from django.urls import path
 from django.contrib.auth.views import LoginView
 from .views import (
-    #register,
+    register,
     MemberView,
     contact,
     log_in,
@@ -12,17 +12,17 @@ from .views import (
     BookView,
     membersonlyView,
     EditProfileView,
-    #CustomSignupView,
+    CustomSignupView,
 )
 
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("personaltrainer/", PersonalTrainerView.as_view(), name='personaltrainer'),
-    path("member/", MemberView.as_view(), name="member"),
+    path('personaltrainer/', views.personal_trainer, name='personaltrainer'),
+    path('member/', views.members, name='member'),
     path("book/", BookView.as_view(), name="booking"),
-    # path("accounts/register/", register, name="account_signup"),
-    # path("accounts/signup/", CustomSignupView.as_view(), name="custom_signup"),
+    path("accounts/register/", register, name="account_signup"),
+    path("accounts/signup/", CustomSignupView.as_view(), name="custom_account_signup"),
     # path("accounts/login/", log_in, name='login'),
     path("profile/", ProfileView.as_view(), name="profile_view"),
     path("contact/", contact, name="contact"),
