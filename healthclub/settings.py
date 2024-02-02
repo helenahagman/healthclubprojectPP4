@@ -12,12 +12,14 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 import dj_database_url
-import env
+from pathlib import Path
+import cloudinary
+from env import *
 
 if os.path.isfile("env.py"):
     import env
 
-from pathlib import Path
+    
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,7 +36,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '*.ws-eu106.gitpod.io',
-    '8000-helenahagma-healthclubp-idbkyd8gjos.ws-eu106.gitpod.io',
+    '8000-helenahagma-healthclubp-xd16582m4yh.ws-eu107.gitpod.io',
     'health-club-project-pp4.herokuapp.com',
     'health-club-project-pp4-aec30baa0c93.herokuapp.com',
     'localhost'
@@ -171,3 +173,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+cloudinary.config(
+        cloud_name=os.environ['CLOUD_NAME'],
+        api_key=os.environ['API_KEY'],
+        api_secret=os.environ['API_SECRET']
+)
+
+CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.environ['CLOUD_NAME'],
+        'API_KEY': os.environ['API_KEY'],
+        'API_SECRET': os.environ['API_SECRET'],
+}
+
+# Default file storage for media files
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
