@@ -10,11 +10,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.conf import settings
 from allauth.account.views import SignupView
 from allauth.account.forms import SignupForm
-from .models import Booking, Profile, Contact
+from .models import Profile, Contact, Session
 from .forms import ContactForm, BookingForm, ProfileForm, SignUpForm
 
 
@@ -159,11 +159,8 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
+            user = form.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('profile')  
     else:
         form = SignUpForm()
@@ -253,6 +250,28 @@ def contact(request):
         form = ContactForm()
     
     return render(request, 'contact.html', {'form': form})
+
+
+@login_required
+def book_session(request, session_id):
+    session = get_object_or_404(Session, id=session_id, booked=False)
+    session.booked = True
+    session.client = request.user
+    session.save()
+    return redirect('sessions_calendar')
+
+def sessions_calendar(request):
+    return render(request, 'sessions_calendar.html')
+
+def sessions_api(request):
+    sessions = Session.objects.filter(booked=False)
+    session_data = [{
+        'title': f"Session with {session.trainer.username}",
+        'start': f"{session.date}T{session.start_time}",
+        'end': f"{session.date}T{session.end_time}",
+        'url': f"/book/{session.id}/",
+    } for session in sessions]
+    return JsonResponse(session_data, safe=False)
 
 
 def personal_trainer(request):

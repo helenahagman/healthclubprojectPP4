@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Booking, Profile, Contact
+from .models import Profile, Contact, Session, Booking
 from django_summernote.admin import SummernoteModelAdmin
 
 

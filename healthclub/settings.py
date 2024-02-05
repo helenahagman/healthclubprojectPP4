@@ -194,5 +194,5 @@ CLOUDINARY_STORAGE = {
 # Default file storage for media files
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-LOGIN_REDIRECT_URL = 'profile'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'profile_view'
+LOGOUT_REDIRECT_URL = 'home_view'

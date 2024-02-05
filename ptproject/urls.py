@@ -13,6 +13,8 @@ from .views import (
     membersonlyView,
     EditProfileView,
     CustomSignupView,
+    sessions_calendar,
+    sessions_api
 )
 
 
@@ -22,7 +24,7 @@ urlpatterns = [
     path('member/', views.members, name='member'),
     path("book/", BookView.as_view(), name="booking"),
     path("accounts/register/", register, name="account_signup"),
-    path("accounts/signup/", CustomSignupView.as_view(), name="custom_account_signup"),
+    # path("accounts/signup/", CustomSignupView.as_view(), name="custom_account_signup"),
     # path("accounts/login/", log_in, name='login'),
     path("profile/", ProfileView.as_view(), name="profile_view"),
     path("contact/", contact, name="contact"),
@@ -31,4 +33,6 @@ urlpatterns = [
     path("logout/", log_out, name='logout'),
     path("membersonly/", membersonlyView.as_view(), name="membersonly"),
     path("profile/edit/", EditProfileView.as_view(), name="edit_profile"),
+    path('sessions/calendar/', sessions_calendar, name='sessions_calendar'),
+    path('api/sessions/', sessions_api, name='sessions_api'),
 ]
