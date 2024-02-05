@@ -6,13 +6,12 @@ from django import forms
 
 def num_validation(num):
     if not num. isdigit():
-        raise ValidationError('Only numbers are allowed in this feild')
+        raise ValidationError('Only numbers are allowed in this field')
 
 
-def name_validation(name):
-    name = ['username', 'first_name', 'last_name', 'name']
-    if not name.isalpha():
-        raise forms.ValidationError('Only letters are allowed in this feild')
+def alpha_only(value):
+    if not value.isalpha():
+        raise ValidationError('Only alphabetic characters are allowed in this field')
 
 
 def date_validation(date):

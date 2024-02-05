@@ -289,3 +289,10 @@ def contact(request):
         'subheading': 'We are here for you, fill in the form and let us know whatäs on your mind',
     }
     return render(request, 'contact.html', context)
+
+def book(request):
+    context = {
+        'header': 'Book PT session',
+        'subheading': 'A session with an expert will get you started, no matter what your goal is! ',
+    }
+    return render(request, 'book.html', context)
