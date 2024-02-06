@@ -232,11 +232,10 @@ def profile_view(request):
 
     return render(request, 'profile.html', context)
 
-def contact(request):
+def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            # save the form data to the contact model
             contact_instance = form.save(commit=False)
             contact_instance.save()
 
@@ -245,7 +244,7 @@ def contact(request):
             contact_message = form.cleaned_data['contact_message']
             
             messages.success(request, 'Your message has been sent.')
-            return HttpResponseRedirect(reverse('contact'))
+            return HttpResponseRedirect('/success/')
     else:
         form = ContactForm()
     
@@ -305,7 +304,7 @@ def signup(request):
 def contact(request):
     context = {
         'header': 'Contact us',
-        'subheading': 'We are here for you, fill in the form and let us know whatäs on your mind',
+        'subheading': 'We are here for you, fill in the form and let us know whats on your mind',
     }
     return render(request, 'contact.html', context)
 

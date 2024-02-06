@@ -6,16 +6,11 @@ from django.contrib.auth import authenticate, login
 from .models import Contact, Booking, Profile
 
 
-class ContactForm(forms.ModelForm):
-    class Meta:
-        model = Contact
-        fields = ['name_contact', 'email', 'contact_message']
-        labels = {
-            'name_contact': 'Your name',
-            'email': 'Email',
-            'contact_message': 'Message',
-        }
-    
+class ContactForm(forms.Form):
+    name_contact = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    contact_message = forms.CharField(widget=forms.Textarea)
+            
     def __init__(self, *args, **kwargs):
         super(ContactForm, self).__init__(*args, **kwargs)
 
