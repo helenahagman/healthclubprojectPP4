@@ -1,5 +1,5 @@
 from . import views
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth.views import LoginView
 from .views import (
     register,
@@ -23,6 +23,7 @@ urlpatterns = [
     path('personaltrainer/', views.personal_trainer, name='personaltrainer'),
     path('member/', views.members, name='member'),
     path("book/", BookView.as_view(), name="booking"),
+    path('accounts/', include('allauth.urls')),
     path("accounts/register/", register, name="account_signup"),
     # path("accounts/signup/", CustomSignupView.as_view(), name="custom_account_signup"),
     # path("accounts/login/", log_in, name='login'),

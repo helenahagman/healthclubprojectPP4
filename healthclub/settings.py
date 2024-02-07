@@ -43,14 +43,6 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.gitpod.io',
-    'https://health-club-project-pp4.herokuapp.com',
-    'https://health-club-project-pp4-aec30baa0c93.herokuapp.com',
-    'http://localhost',
-    'https://8000-helenahagma-healthclubp-xd16582m4yh.ws-eu107.gitpod.io',
-    'https://8000-helenahagma-healthclubp-xd16582m4yh.ws-eu108.gitpod.io',
-]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -58,6 +50,7 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -79,7 +72,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -171,8 +163,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://your-trusted-origin.com',
-    'https://8000-helenahagma-healthclubp-idbkyd8gjos.ws-eu106.gitpod.io',
+    'https://*.gitpod.io',
+    'https://health-club-project-pp4.herokuapp.com',
+    'https://health-club-project-pp4-aec30baa0c93.herokuapp.com',
+    'http://localhost',
+    'https://8000-helenahagma-healthclubp-xd16582m4yh.ws-eu107.gitpod.io',
+    'https://8000-helenahagma-healthclubp-xd16582m4yh.ws-eu108.gitpod.io',
 ]
 
 # Default primary key field type
@@ -181,8 +177,11 @@ CSRF_TRUSTED_ORIGINS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+SITE_ID = 1
 
 cloudinary.config(
         cloud_name=os.environ['CLOUD_NAME'],
@@ -200,4 +199,26 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 LOGIN_REDIRECT_URL = 'profile_view'
-LOGOUT_REDIRECT_URL = 'home_view'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'home_view'
+ACCOUNT_SESSION_REMEMBER = TrueACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
