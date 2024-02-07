@@ -44,7 +44,12 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://*.gitpod.io',
+    'https://health-club-project-pp4.herokuapp.com',
+    'https://health-club-project-pp4-aec30baa0c93.herokuapp.com',
+    'http://localhost',
     'https://8000-helenahagma-healthclubp-xd16582m4yh.ws-eu107.gitpod.io',
+    'https://8000-helenahagma-healthclubp-xd16582m4yh.ws-eu108.gitpod.io',
 ]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
