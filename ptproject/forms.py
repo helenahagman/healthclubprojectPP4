@@ -3,7 +3,7 @@ from allauth.account.forms import SignupForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .models import Contact, Booking, Profile
+from .models import Contact, Booking, Profile, Session
 
 
 class ContactForm(forms.Form):
@@ -16,34 +16,16 @@ class ContactForm(forms.Form):
 
 
 class BookingForm(forms.ModelForm):
+     # session = forms.ModelChoiceField(queryset=Session.objects.all(), empty_label="Select a session", label="Session")
+
     class Meta:
         model = Booking
-        fields = ['name', 'phonenumber', 'email', 'age', 'gender', 'message', 'date', 'time']
-        labels = {
-            'name': 'Your Name',
-            'phonenumber': 'Phone Number',
-            'email': 'Email',
-            'age': 'Age',
-            'gender': 'Gender',
-            'message': 'Message',
-            'date': 'Preferred Date',
-            'time': 'Preferred Time',
-        }
-        help_texts = {
-            'date': 'Select a date.',
-            'time': 'Select a time.',
-        }
-        
+        fields = ['session', 'name', 'phonenumber', 'email', 'age', 'gender', 'message']
+                
         widgets = {
-            'name': forms.TextInput(attrs={'placeholder': 'State your name'}),
-            'phonenumber': forms.TextInput(attrs={'placeholder': '1234567890'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'your@mail.com'}),
-            'age': forms.NumberInput(attrs={'placeholder': 'Enter your age'}),
-            'gender': forms.Select(attrs={'placeholder': 'Select your gender'}),
-            'message': forms.Textarea(attrs={'placeholder': 'Enter your message'}),
-            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'placeholder': 'Select a date'}),
-            'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control', 'placeholder': 'Select a time'}),
+            'message': forms.Textarea(attrs={'rows': 4}),
         }
+
 
 class ProfileForm(forms.ModelForm):
     class Meta:

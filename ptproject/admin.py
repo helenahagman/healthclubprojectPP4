@@ -27,3 +27,9 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'first_name', 'last_name', 'phone_number', 'email', )
     list_filter = ('user',)
     search_fields = ('user', 'first_name', 'last_name', 'phone_number', 'email',)
+
+
+@admin.register(Session)
+class SessionAdmin(admin.ModelAdmin):
+    list_display = ['trainer_name', 'session_type', 'date', 'start_time', 'end_time',]
+    list_filter = ['date', 'trainer_name']

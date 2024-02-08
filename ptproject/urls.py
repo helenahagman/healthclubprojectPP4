@@ -14,7 +14,8 @@ from .views import (
     EditProfileView,
     CustomSignupView,
     sessions_calendar,
-    sessions_api
+    sessions_api,
+    book_session
 )
 
 
@@ -36,4 +37,5 @@ urlpatterns = [
     path("profile/edit/", EditProfileView.as_view(), name="edit_profile"),
     path('sessions/calendar/', sessions_calendar, name='sessions_calendar'),
     path('api/sessions/', sessions_api, name='sessions_api'),
+    path('book_session/', book_session, name='book_session'),
 ]

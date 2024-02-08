@@ -14,7 +14,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.conf import settings
 from allauth.account.views import SignupView
 from allauth.account.forms import SignupForm
-from .models import Profile, Contact, Session
+from .models import Profile, Contact, Session, Booking
 from .forms import ContactForm, BookingForm, ProfileForm, SignUpForm
 
 
@@ -52,19 +52,7 @@ class BookView(View):
 
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
-        # check if the user is authenticated
-        user = request.user
-        if user.is_authenticated:
-            # If authenticated, pre-fill form with user information
-            profile = Profile.objects.get_or_create(user=user) [0]
-            initial_data = {
-                'name': user.get_full_name(),
-                'email': user.email,
-            }
-            form = BookingForm(initial=initial_data)
-        else:
-            form = BookingForm()
-
+        form = BookingForm()
         return render(request, self.template_name, {'form': form})
     
     def post(self, request, *args, **kwargs):
@@ -72,26 +60,19 @@ class BookView(View):
         if form.is_valid():
             # Save the form data to the Booking model
             booking_instance = form.save(commit=False)
-            booking_instance.approved = False
-            booking_instance.user = request.user 
+            booking_instance.user = request.user
+            # check if the session is booked
+            if Booking.objects.filter(session=booking_instance.session).exists():
+                messages.error(request, 'This session is already booked.')
+                return render(request, self.template_name, {'form': form})
+
             booking_instance.save()
+            messages.success(request, 'Your session is booked!')
+            return redirect('profile_view')
 
-            name = form.cleaned_data['name']  
-            phonenumber = form.cleaned_data['phonenumber']  
-            email = form.cleaned_data['email']  
-            age = form.cleaned_data['age']  
-            gender = form.cleaned_data['gender']  
-            message = form.cleaned_data['message']  
-            date = form.cleaned_data['date']  
-            time = form.cleaned_data['time']
-            
-            messages.success(request, 'Your request has been sent.')
-            return HttpResponseRedirect(reverse('booking'))
-        else:
-            form = BookingForm()
+        return render(request, self.template_name, {'form': form})
 
-        return render(request, 'book.html', {'form': form})
-
+ 
 
 class MemberView(View):
     """
@@ -253,11 +234,15 @@ def contact_view(request):
 
 @login_required
 def book_session(request, session_id):
-    session = get_object_or_404(Session, id=session_id, booked=False)
-    session.booked = True
-    session.client = request.user
-    session.save()
-    return redirect('sessions_calendar')
+    session = get_object_or_404(Session, pk=session_id)
+    if session.participant is None:
+        session.participant = request.user
+        session.save()
+        messages.success(request, 'Your session is booked')
+        return redirect('session_success_url')
+    else:
+        messages.error(request, 'This session is already booked')
+        return render(request, 'session_already_booked.html')
 
 def sessions_calendar(request):
     return render(request, 'sessions_calendar.html')
