@@ -1,27 +1,41 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.validators import MinValueValidator, ValidationError
+from django.core.validators import MinValueValidator
 from ptproject.utils import num_validation, alpha_only
 
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+def get_default_session():
+    session = Session.objects.first()
+    if not session:
+        pass
+    return session
 
+
+class Session(models.Model):
+    trainer_name = models.CharField(max_length=100)
+    session_type = models.CharField(max_length=100)
+    date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    
+    def __str__(self):
+        return f"{self.session_type} with {self.trainer_name} on {self.date} from {self.start_time} to {self.end_time}"
 
 
 class Booking(models.Model):
     """
     Create a booking request form
     """
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    session = models.ForeignKey('Session', on_delete=models.CASCADE, default=get_default_session, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=get_default_user)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE, default=get_default_session, null=True)
     name = models.CharField(max_length=100, default='State your name')
     phonenumber = models.CharField(max_length=15, default='1234567890')
     email = models.EmailField(max_length=70, default='your@mail.com')
     age = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     gender = models.CharField(
-        max_length=10,
         choices=[
             ('male', 'Male'),
             ('female', 'Female'),
@@ -36,17 +50,6 @@ class Booking(models.Model):
     
     def __str__(self):
         return f'Booking by {self.user.username} for session {self.session.session_type} on {self.session.date}'
-
-
-class Session(models.Model):
-    trainer_name = models.CharField(max_length=100)
-    session_type = models.CharField(max_length=100)
-    date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
-    
-    def __str__(self):
-        return f"{self.session_type} with {self.trainer_name} on {self.date} from {self.start_time} to {self.end_time}"
 
 
 class Contact(models.Model):

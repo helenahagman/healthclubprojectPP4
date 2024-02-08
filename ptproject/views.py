@@ -62,12 +62,12 @@ class BookView(View):
             booking_instance = form.save(commit=False)
             booking_instance.user = request.user
             # check if the session is booked
-            if Booking.objects.filter(session=booking_instance.session).exists():
+            if Booking.objects.filter(session=booking_instance.session, user=request.user).exists():
                 messages.error(request, 'This session is already booked.')
                 return render(request, self.template_name, {'form': form})
 
             booking_instance.save()
-            messages.success(request, 'Your session is booked!')
+            messages.success(request, 'Your session has been booked!')
             return redirect('profile_view')
 
         return render(request, self.template_name, {'form': form})
