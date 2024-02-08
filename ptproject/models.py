@@ -15,7 +15,7 @@ class Booking(models.Model):
     Create a booking request form
     """
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    session = models.ForeignKey('Session', on_delete=models.CASCADE)
+    session = models.ForeignKey('Session', on_delete=models.CASCADE, default=get_default_session, null=True)
     name = models.CharField(max_length=100, default='State your name')
     phonenumber = models.CharField(max_length=15, default='1234567890')
     email = models.EmailField(max_length=70, default='your@mail.com')
@@ -74,7 +74,7 @@ class Profile(models.Model):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     email = models.EmailField(max_length=70, default='default@example.com')
-    phone_number = models.CharField(max_length=50, null=True, blank=True, validators=[num_validation])
+    phone_number = models.CharField(max_length=20, null=True, blank=True, validators=[num_validation])
     first_name = models.CharField(max_length=50, null=True, blank=True, validators=[alpha_only])
     last_name = models.CharField(max_length=50, null=True, blank=True, validators=[alpha_only])
     password = models.CharField(max_length=128, null=True, blank=True)
