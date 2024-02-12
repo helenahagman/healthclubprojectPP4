@@ -20,6 +20,7 @@ class Session(models.Model):
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
+    booked = models.BooleanField(default=False)
     
     def __str__(self):
         return f"{self.session_type} with {self.trainer_name} on {self.date} from {self.start_time} to {self.end_time}"

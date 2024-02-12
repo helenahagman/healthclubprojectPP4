@@ -31,5 +31,5 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
-    list_display = ['trainer_name', 'session_type', 'date', 'start_time', 'end_time',]
+    list_display = ['trainer_name', 'session_type', 'date', 'start_time', 'end_time', 'booked']
     list_filter = ['date', 'trainer_name']

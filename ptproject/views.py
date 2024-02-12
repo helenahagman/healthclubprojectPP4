@@ -62,9 +62,12 @@ class BookView(View):
             booking_instance = form.save(commit=False)
             booking_instance.user = request.user
             # check if the session is booked
-            if Booking.objects.filter(session=booking_instance.session, user=request.user).exists():
+            if booking_instance.session.booked:
                 messages.error(request, 'This session is already booked.')
                 return render(request, self.template_name, {'form': form})
+
+            booking_instance.session.booked = True
+            booking_instance.session.save()
 
             booking_instance.save()
             messages.success(request, 'Your session has been booked!')
@@ -250,7 +253,7 @@ def sessions_calendar(request):
 def sessions_api(request):
     sessions = Session.objects.filter(booked=False)
     session_data = [{
-        'title': f"Session with {session.trainer.username}",
+        'title': f"Session with {session.trainer_name}",
         'start': f"{session.date}T{session.start_time}",
         'end': f"{session.date}T{session.end_time}",
         'url': f"/book/{session.id}/",
