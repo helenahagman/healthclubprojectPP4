@@ -93,3 +93,13 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user} profile'
+
+
+class MemberComment(models.Model):
+    """
+    Member comments
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.TextField()
+    photo = models.ImageField(upload_to='member_photos/')
+    created_at = models.DateTimeField(auto_now_add=True)

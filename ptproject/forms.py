@@ -3,7 +3,7 @@ from allauth.account.forms import SignupForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from .models import Contact, Booking, Profile
+from .models import Contact, Booking, Profile, MemberComment
 
 
 class ContactForm(forms.ModelForm):
@@ -36,3 +36,8 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2',)
+
+class MemberCommentForm(forms.ModelForm):
+    class Meta:
+        model = MemberComment
+        fields = ['comment', 'photo']

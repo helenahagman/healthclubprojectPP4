@@ -15,7 +15,7 @@ from django.conf import settings
 from allauth.account.views import SignupView
 from allauth.account.forms import SignupForm
 from .models import Profile, Contact, Session, Booking
-from .forms import ContactForm, BookingForm, ProfileForm, SignUpForm
+from .forms import ContactForm, BookingForm, ProfileForm, SignUpForm, MemberCommentForm
 
 
 def index(request):
@@ -302,3 +302,16 @@ def book(request):
         'subheading': 'A session with an expert will get you started, no matter what your goal is! ',
     }
     return render(request, 'book.html', context)
+
+def membersonly(request):
+    if request.method == 'POST':
+        form = MemberCommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.save()
+            return redirect('membersonly')
+    else:
+        form = MemberCommentForm()
+    return render(request, 'membersonly.html', {'form': form})
+    
