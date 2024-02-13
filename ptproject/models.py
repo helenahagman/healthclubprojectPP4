@@ -48,6 +48,13 @@ class Booking(models.Model):
     date = models.DateField()
     time = models.TimeField()
     approved = models.BooleanField(default=False)
+
+    TIME_CHOICES = [
+        ('AM', 'Before Noon'),
+        ('PM', 'After Noon'),
+    ]
+    time = models.CharField(max_length=2, choices=TIME_CHOICES, default='AM')
+
     
     def __str__(self):
         return f'Booking by {self.user.username} for session {self.session.session_type} on {self.session.date}'

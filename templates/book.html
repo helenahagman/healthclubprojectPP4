@@ -5,29 +5,6 @@
 {% block head_title %}{% trans "Booking" %}{% endblock %}
 
 {% block content %}
-<!-- FullCalendar CSS -->
-<link href='https://unpkg.com/fullcalendar@5/main.min.css' rel='stylesheet' />
-
-<!-- Calendar Container -->
-<div id='calendar'></div>
-
-<!-- FullCalendar JS and Initialization -->
-<script src='https://unpkg.com/fullcalendar@5/main.min.js'></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        events: '{% url "sessions_api" %}',
-        eventClick: function(info) {
-            // Handle click on an event
-            window.location.href = info.event.url;
-        }
-    });
-    calendar.render();
-});
-</script>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-6 mb-4">

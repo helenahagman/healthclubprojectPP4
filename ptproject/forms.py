@@ -15,7 +15,7 @@ class ContactForm(forms.ModelForm):
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['session', 'name', 'phonenumber', 'email', 'age', 'gender', 'message']
+        fields = ['session', 'name', 'phonenumber', 'email', 'age', 'gender', 'message', 'time']
         widgets = {
             'message': forms.Textarea(attrs={'rows': 4}),
         }
